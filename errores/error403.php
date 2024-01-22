@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            text-align: center;
         }
         header {
             background-color: #333;
