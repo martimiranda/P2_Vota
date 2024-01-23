@@ -15,7 +15,8 @@ $(document).ready(function(){
     containerDiv.append(boxDiv);
     $('body').append(containerDiv);
 $('#validate').click(function(){
-    validateRegister($(this).prev("input[name]").attr("name"));  
+    if (boxDiv.next('#box').length === 0) {
+    validateRegister($(this).prev("input[name]").attr("name"));  }
 });
 });
 function validateRegister(inputType){
@@ -150,7 +151,8 @@ function createBoxPwd(){
         $('<h4>').text('Repita contraseña'),
         $('<input>').attr({ type: 'password', name: 'pwd2', placeholder: 'Contraseña repetida'}),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
-            validateRegister($(this).prev("input[name]").attr("name"));  
+            if (pwdDiv.next('#box').length === 0) {
+                validateRegister($(this).prev("input[name]").attr("name"));  } 
         })
     );
 
@@ -175,7 +177,8 @@ function createBoxEmail(){
             $(this).closest('#box').nextAll('#box').remove();
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
-            validateRegister($(this).prev("input[name]").attr("name"));  
+            if (mailDiv.next('#box').length === 0) {
+                validateRegister($(this).prev("input[name]").attr("name"));  }  
         })
     );
 
@@ -189,7 +192,8 @@ function createBoxTlf(){
             $(this).closest('#box').nextAll('#box').remove();
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
-            validateRegister($(this).prev("input[name]").attr("name"));  
+            if (tlfDiv.next('#box').length === 0) {
+                validateRegister($(this).prev("input[name]").attr("name"));  }
         })
     );
 
@@ -214,8 +218,9 @@ function createBoxCountry() {
     countryDiv.append(select);
 
     countryDiv.append($('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
-        var selectedCountry = $('#selectCountry').val();
-        validateRegister("country");
+        if (countryDiv.next('#box').length === 0) {
+            validateRegister("country");  }
+        
     }));
 
     $('.container').append(countryDiv);
@@ -227,7 +232,8 @@ function createBoxCity(){
             $(this).closest('#box').nextAll('#box').remove();
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
-            validateRegister($(this).prev("input[name]").attr("name"));  
+            if (cityDiv.next('#box').length === 0) {
+                validateRegister($(this).prev("input[name]").attr("name"));  }
         })
     );
 
@@ -241,7 +247,8 @@ function createBoxCode(){
             $(this).closest('#box').nextAll('#box').remove();
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
-            validateRegister($(this).prev("input[name]").attr("name"));  
+            if (codeDiv.next('#box').length === 0) {
+                validateRegister($(this).prev("input[name]").attr("name"));  }  
         })
     );
     $('.container').append(codeDiv);
