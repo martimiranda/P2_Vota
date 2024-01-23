@@ -10,12 +10,12 @@
     <header>
         <h1>MARGOMI VOTOS</h1>
         <div class="menu">
-            <a class='menul' href='login.php'><h2>login</h2></a>
-            <a class='menul' href='registre.php'><h2>registre</h2></a>
+            <!-- <a class='menul' href='login.php'><h2>logearse</h2></a> -->
+            <a class='menul' href='registre.php'><h2>registrarse</h2></a>
         </div>
     </header>
     <section>
-        <img src="/img/encuestas-online.png" alt="encuestas">
+        <img src="img/encuestas-online.png" alt="encuestas">
     </section>
     <main>
         <p>Estas en nuestra pagina principal de <strong>margomi votos</strong>, es un portal de votos, donde puedes hacer multiples operaciones como crear encuestas a tu merced, votar encuestas creadas por los usuarios y mucho mas. ¡Descubre como!<br>
@@ -33,8 +33,8 @@
         </ul>
     </main>
     <section>
-        <a class='button' href="login.php">login</a>
-        <a class='button' href="registre.php">registre</a>
+        <!-- <a class='button' href="login.php">logearse</a> -->
+        <a class='button' href="registre.php">registrarse</a>
     </section>
     <footer>
         <div id="contacte">

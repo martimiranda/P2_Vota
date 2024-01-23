@@ -5,64 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error 403 - Forbidden</title>
-    <style>
-        body {
-            background-color: #D9D9D9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            text-align: center;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-        h1, p {
-            margin: 25px;
-        }
-        a {
-            color: #D9D9D9;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-            padding: 20px 0;
-            margin-top: auto;
-        }
-        #contacte, #enllacos {
-            margin: 10px;
-            margin-right: 80px;
-            margin-left: 80px;
-            margin-bottom: auto
-        }
-        #contacte, #enllacos {
-            display: flex;
-            flex-direction: column;
-        }
-        #contacte h2, #enllacos h2 {
-            border-bottom: 1px solid #fff;
-            padding-bottom: 5px;
-            margin: 0;
-        }
-        #contactes {
-            display: flex;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body class="error403">
     <header>
         <h1>ERROR 403 - Forbidden</h1>
     </header>
-    <h1>Error 403</h1>
-    <p>No tienes permisos para acceder en esta página.</p>
     <footer>
         <div id="contacte">
             <h2>Contactos</h2>
