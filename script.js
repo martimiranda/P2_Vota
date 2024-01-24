@@ -149,7 +149,6 @@ function createBoxSendData(password) {
     });
 
     form.append('<h4>Datos de registro correctas!!</h4>');
-    form.append('<h4>Haga click en enviar para crear la cuenta</h4>');
     form.append($('<button>').attr('type', 'submit').text('Enviar'));
     var sendDiv = $('<div id="box">').append(form);
 
