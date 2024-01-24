@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -67,13 +67,22 @@ try {
                     <img src="img/error.png" alt="Error Image" class="error-image">
                     <div class="text-and-button">
                         <h2>Error</h2>
-                        <p>Ya existe una cuenta asociada a este correo electrónico</p>
+                        <form action="register.php">
+                        <p>Ya existe una cuenta asociada con estos datos de registro</p>
                         <button class="accept-button">Aceptar</button>
+                        </form>
                     </div>
                 </div>
             </div>';
             } else {
-                //echo "Cuenta creada con exito";
+                echo '<div id="account_created" class="container">
+                <div id="box">
+                    <form action="index.php" method="POST">
+                        <h4>Cuenta creada correctamente!!</h4>
+                        <button class="accept-button" type="submit">Aceptar</button>
+                    </form>
+                </div>
+            </div>';
                 try {
                     $query = $pdo->prepare("INSERT INTO users (name, email, password, phone, country_name, city, postal_code)
                             VALUES (:user, :mail, SHA2(:pwd, 512), :phone, :country, :city, :code)");
