@@ -9,11 +9,12 @@ $(document).ready(function(){
     });
     inputElement.on('input', function () {
         $(this).closest('#box').nextAll('#box').remove();
+        $(this).css('background-color', '');
     });
     var buttonElement = $('<button>').attr('id', 'validate').text('Validar');
     boxDiv.append(h4Element, inputElement, buttonElement);
     containerDiv.append(boxDiv);
-    $('body').append(containerDiv);
+    $('#reg').append(containerDiv);
 $('#validate').click(function(){
     if (boxDiv.next('#box').length === 0) {
     validateRegister($(this).prev("input[name]").attr("name"));  }
@@ -25,8 +26,9 @@ function validateRegister(inputType){
         case "user":
              var nameUser = $('input[name=user]').val();
             if(nameUser.trim()==="" || /\d/.test(nameUser)){
-                alert("NOMBRE INCORRECTO");
+                errormessage("El nombre no puede contener numeros ni estar vacio");
             }else{
+                $('input[name=user]').css('background-color', '#b4e7b3');
                 localStorage.setItem('nameUser',nameUser);
                 createBoxEmail();
             }
@@ -36,16 +38,17 @@ function validateRegister(inputType){
             if($('input[name=pwd1]').val()===$('input[name=pwd2]').val()){
                 var pwd = $('input[name=pwd1]').val();
                 if(pwd.trim().length>=8){
-
+                    $('input[name=pwd1]').css('background-color', '#b4e7b3');
+                    $('input[name=pwd2]').css('background-color', '#b4e7b3');
                     createBoxSendData(pwd);
                     
                 }
 
                 else{
-                    alert("La contraseña debe contener como minimo 8 caracteres");
+                    errormessage("La contraseña debe contener como minimo 8 caracteres");
                 }
             }else{
-                alert("LAS CONTRASEÑAS NO COINCIDEN");
+                errormessage("Las contraseñas no coinciden");
             }
             break;
     
@@ -53,9 +56,10 @@ function validateRegister(inputType){
             var mail = $('input[name=mail]').val();
             if(mail.includes('@') && mail.includes('.') && !mail.includes(' ') && mail.length>2){
                 localStorage.setItem('mail',mail);
+                $('input[name=mail]').css('background-color', '#b4e7b3');
                 createBoxTlf();
             }else{
-                alert("EMAIL INCORRECTO");
+                errormessage("Email incorrecto");
             }
             break;
 
@@ -64,10 +68,11 @@ function validateRegister(inputType){
 
             if (!isNaN(tlf) && tlf.length === 9) {
                 localStorage.setItem('phone', tlf);
+                $('input[name=tlf]').css('background-color', '#b4e7b3');
                 createBoxCountry();
                 
             } else {
-                alert("TELÉFONO INCORRECTO");
+                errormessage("Teléfono incorrecto");
             }
             break;
             
@@ -78,8 +83,9 @@ function validateRegister(inputType){
         case "city":
            var city = $('input[name=city]').val();
             if(city.trim()===""){
-                alert("CIUDAD INCORRECTA");
+                errormessage("El campo ciudad no puede estar vacio");
             }else{
+                $('input[name=city]').css('background-color', '#b4e7b3');
                 localStorage.setItem('city',city);
                 createBoxCode();
             }
@@ -89,11 +95,12 @@ function validateRegister(inputType){
             var code = $('input[name=postal_code]').val().replace(/\s/g, '');
 
             if (!isNaN(code)) {
+                $('input[name=postal_code]').css('background-color', '#b4e7b3');
                 localStorage.setItem('code', code);
                 createBoxPwd();
                 
             } else {
-                alert("CÓDIGO POSTAL INCORRECTO");
+                errormessage("El código postal debe estar compuesto solo de numeros");
             }
             break;
 
@@ -147,9 +154,15 @@ function createBoxSendData(password) {
 function createBoxPwd(){
     var pwdDiv = $('<div id="box">').append(
         $('<h4>').text('Ingrese su nueva contraseña:'),
-        $('<input>').attr({ type: 'password', name: 'pwd1', placeholder: 'Nueva contraseña'}),
+        $('<input>').attr({ type: 'password', name: 'pwd1', placeholder: 'Nueva contraseña'}).on('input', function () {
+            $(this).closest('#box').nextAll('#box').remove();
+            $(this).css('background-color', '');
+        }),
         $('<h4>').text('Repita contraseña'),
-        $('<input>').attr({ type: 'password', name: 'pwd2', placeholder: 'Contraseña repetida'}),
+        $('<input>').attr({ type: 'password', name: 'pwd2', placeholder: 'Contraseña repetida'}).on('input', function () {
+            $(this).closest('#box').nextAll('#box').remove();
+            $(this).css('background-color', '');
+        }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (pwdDiv.next('#box').length === 0) {
                 validateRegister($(this).prev("input[name]").attr("name"));  } 
@@ -159,22 +172,13 @@ function createBoxPwd(){
     $('.container').append(pwdDiv);
     
 }
-async function hashPwd(inputString) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(inputString);
-    const hashBuffer = await crypto.subtle.digest('SHA-512', data);
-    
-    // Convertir el buffer de hash a una representación hexadecimal
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    
-    return hashHex;
-}
+
 function createBoxEmail(){
     var mailDiv = $('<div id="box">').append(
         $('<h4>').text('Ingrese su direccion de correo electrónico:'),
         $('<input>').attr({ type: 'text', name: 'mail', placeholder: 'Correo electrónico'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
+            $(this).css('background-color', '');
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (mailDiv.next('#box').length === 0) {
@@ -190,6 +194,7 @@ function createBoxTlf(){
         $('<h4>').text('Ingrese su número de teléfono:'),
         $('<input>').attr({ type: 'text', name: 'tlf', placeholder: 'Número de teléfono'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
+            $(this).css('background-color', '');
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (tlfDiv.next('#box').length === 0) {
@@ -230,6 +235,7 @@ function createBoxCity(){
         $('<h4>').text('Ingrese su ciudad:'),
         $('<input>').attr({ type: 'text', name: 'city', placeholder: 'Ciudad donde se localiza'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
+            $(this).css('background-color', '');
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (cityDiv.next('#box').length === 0) {
@@ -245,6 +251,7 @@ function createBoxCode(){
         $('<h4>').text('Ingrese su código postal:'),
         $('<input>').attr({ type: 'text', name: 'postal_code', placeholder: 'Codigo postal'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
+            $(this).css('background-color', '');
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (codeDiv.next('#box').length === 0) {
@@ -254,3 +261,34 @@ function createBoxCode(){
     $('.container').append(codeDiv);
     
 }
+function errormessage(message) {
+    var errorWindow = $('<div>').addClass('error-window');
+    var titleBar = $('<div>').addClass('title-bar');
+    var closeButton = $('<div>').addClass('close-button').click(function () {
+        $('body').css('filter', 'none');
+        errorWindow.remove();
+    });
+    titleBar.append(closeButton);
+
+    var content = $('<div>').addClass('content');
+    var errorImage = $('<img>').attr({
+        src: 'error.png',
+        alt: 'Error Image'
+    }).addClass('error-image');
+
+    var textAndButton = $('<div>').addClass('text-and-button');
+    var h2Element = $('<h2 id="errormessage">').text('Error');
+    var pElement = $('<p>').text(message);
+    var acceptButton = $('<button>').addClass('accept-button').text('Aceptar').click(function () {
+        errorWindow.remove();
+    });
+    textAndButton.append(h2Element, pElement, acceptButton);
+
+    content.append(errorImage, textAndButton);
+    errorWindow.append(titleBar, content);
+
+    // Añadir la ventana emergente al final del body
+    $('body').append(errorWindow);
+}
+
+

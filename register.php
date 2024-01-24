@@ -9,10 +9,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
-</body>
-<?php
+<header>
+        <h1>REGISTRO MARGOMI VOTOS</h1>
+        <div class="menu">
+            <a class='menul' href='index.php'><h2>inicio</h2></a>
+            <a class='menul' href='register.php'><h2>registrarse</h2></a>
+        </div>
+    </header>
+    <h1 id="reg"></h1>
+    <?php
 try {
     $dsn = "mysql:host=localhost;dbname=p2_votos";
     $pdo = new PDO($dsn, 'marti', 'M*12_EGbb56');
@@ -54,7 +59,19 @@ try {
             $row = $query->fetch();
             
             if ($row) {
-                echo "Ya existe un usuario con ese email o número de teléfono";
+                echo ' <div class="error-window">
+                <div class="title-bar">
+                    <div class="close-button"></div>
+                </div>
+                <div class="content">
+                    <img src="error.png" alt="Error Image" class="error-image">
+                    <div class="text-and-button">
+                        <h2>Error</h2>
+                        <p>Ya existe una cuenta asociada a este correo electrónico</p>
+                        <button class="accept-button">Aceptar</button>
+                    </div>
+                </div>
+            </div>';
             } else {
                 //echo "Cuenta creada con exito";
                 try {
@@ -90,4 +107,37 @@ try {
             
     }
 ?>
+<footer>
+        <div id="contacte">
+            <h2>Contactos</h2>
+            <div id="contactes">
+                <div id="contacte1">
+                    <h4>Marcelo González</h4>
+                    <p>
+                        Teléfon: <a href="tel:+661794022">661-794-022</a><br>
+                        Gmail: <a href="mailto:marcelogr2004@gmail.com">marcelogr2004@gmail.com</a><br>
+                        Instagram: <a href="https://www.instagram.com/mgonnzalezz" target="_blank">@mgonnzalezz</a>
+                    </p>
+                </div>
+                <div id="contacte2">
+                    <h4>Martí Miranda</h4>
+                    <p>
+                        Teléfon: <a href="tel:+123456789">689-667-587</a><br>
+                        Gmail: <a href="mailto:info@example.com">martimiranda2356@gmail.com</a><br>
+                        Instagram: <a href="https://www.instagram.com/martimiranda" target="_blank">@martimiranda</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="enllacos">
+            <h2>Enlaces</h2>
+            <p>
+                Instituto: <a href="https://www.iesesteveterradas.cat/" target="_blank">Institut Esteve Terrades</a><br>
+                GitHub: <a href="https://github.com/Marcelogr04/P2_Vota.git" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+
 </html>

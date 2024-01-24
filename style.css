@@ -1,13 +1,114 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #c8f1e5;
+    background-color: #D9D9D9;
+    font-family: 'Lora', sans-serif;
     margin: 0;
+    padding: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
 }
 
+.error403 {
+    background-image: url('/img/error403.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 1200px;
+}
+.error404 {
+    background-image: url('/img/error404.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 1200px;
+}
+
+/* header */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menul {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    border: 2px solid #686565;
+    transition: background-color 0.3s;
+}
+
+.menul:hover {
+    background-color: #686565;
+}
+
+h2 {
+    margin: 10px;
+}
+
+h1{
+    margin: 25px;
+}
+
+p {
+    margin: 10px;
+}
+
+a {
+    color: #D9D9D9;
+}
+
+ul {
+    margin: 0px 0px 30px 0px;
+}
+
+/* index.php */
+main {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    margin: 50px 200px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+section {
+    align-items: center;
+}
+
+img {
+    max-width: 500px;
+    height: auto;
+    margin-top: 30px;
+}
+
+.button{
+    display: inline-block;
+    padding: 20px 40px;
+    margin: 25px 25px 50px 25px;
+    background-color: #333;
+    border: 2px solid #686565;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Lora', sans-serif;
+    transition-duration: 1s;
+}
+
+.button:hover:hover{
+    transition-duration: 1s;
+    background-color: #686565;
+}
+
+/* register.php */
 .container {
     display: flex;
     flex-direction: column;
@@ -28,12 +129,6 @@ h4 {
     color: #333;
 }
 
-h2 {
-    text-align: center;
-    font-size: 1.5em;
-    color: black;
-}
-
 input {
     width: 100%;
     padding: 10px;
@@ -42,8 +137,8 @@ input {
 }
 
 button {
-    background-color: #adebd8;
-    color: black;
+    background-color: #333;
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -51,5 +146,101 @@ button {
 }
 
 button:hover {
-    background-color: #a5dfcd;
+    background-color: #343;
+}
+
+/* footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+#contacte, #enllacos {
+    margin: 10px;
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-bottom: auto
+}
+
+#contacte, #enllacos {
+    display: flex;
+    flex-direction: column;
+}
+
+#contacte h2, #enllacos h2 {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+    margin: 0;
+}
+
+#contactes {
+    display: flex;
+}
+
+
+.error-window {
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+}
+
+.title-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-button {
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    margin-left: 16px; 
+}
+
+.error-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 16px;
+}
+
+.text-and-button {
+    padding: 16px;
+}
+
+#errormessage {
+    color: #ff5f56;
+}
+
+p {
+    color: #333;
+}
+
+.accept-button {
+    background-color: #333;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 16px;
 }
