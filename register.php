@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -64,16 +64,25 @@ try {
                     <div class="close-button"></div>
                 </div>
                 <div class="content">
-                    <img src="error.png" alt="Error Image" class="error-image">
+                    <img src="img/error.png" alt="Error Image" class="error-image">
                     <div class="text-and-button">
                         <h2>Error</h2>
-                        <p>Ya existe una cuenta asociada a este correo electrónico</p>
+                        <form action="register.php">
+                        <p>Ya existe una cuenta asociada con estos datos de registro</p>
                         <button class="accept-button">Aceptar</button>
+                        </form>
                     </div>
                 </div>
             </div>';
             } else {
-                //echo "Cuenta creada con exito";
+                echo '<div id="account_created" class="container">
+                <div id="box">
+                    <form action="index.php" method="POST">
+                        <h4>Cuenta creada correctamente!!</h4>
+                        <button class="accept-button" type="submit">Aceptar</button>
+                    </form>
+                </div>
+            </div>';
                 try {
                     $query = $pdo->prepare("INSERT INTO users (name, email, password, phone, country_name, city, postal_code)
                             VALUES (:user, :mail, SHA2(:pwd, 512), :phone, :country, :city, :code)");
@@ -113,7 +122,7 @@ try {
             <div id="contactes">
                 <div id="contacte1">
                     <h4>Marcelo González</h4>
-                    <p>
+                    <p class="footer">
                         Teléfon: <a href="tel:+661794022">661-794-022</a><br>
                         Gmail: <a href="mailto:marcelogr2004@gmail.com">marcelogr2004@gmail.com</a><br>
                         Instagram: <a href="https://www.instagram.com/mgonnzalezz" target="_blank">@mgonnzalezz</a>
@@ -121,7 +130,7 @@ try {
                 </div>
                 <div id="contacte2">
                     <h4>Martí Miranda</h4>
-                    <p>
+                    <p class="footer">
                         Teléfon: <a href="tel:+123456789">689-667-587</a><br>
                         Gmail: <a href="mailto:info@example.com">martimiranda2356@gmail.com</a><br>
                         Instagram: <a href="https://www.instagram.com/martimiranda" target="_blank">@martimiranda</a>
@@ -132,7 +141,7 @@ try {
         
         <div id="enllacos">
             <h2>Enlaces</h2>
-            <p>
+            <p class="footer">
                 Instituto: <a href="https://www.iesesteveterradas.cat/" target="_blank">Institut Esteve Terrades</a><br>
                 GitHub: <a href="https://github.com/Marcelogr04/P2_Vota.git" target="_blank">GitHub</a>
             </p>

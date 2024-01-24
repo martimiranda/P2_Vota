@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    if ($('#account_created').length === 0) {
     var containerDiv = $('<div>').addClass('container');
     var boxDiv = $('<div>').attr('id', 'box');
     var h4Element = $('<h4>').text('Ingrese su nombre:');
@@ -18,16 +19,21 @@ $(document).ready(function(){
 $('#validate').click(function(){
     if (boxDiv.next('#box').length === 0) {
     validateRegister($(this).prev("input[name]").attr("name"));  }
-});
+});}
+
 });
 function validateRegister(inputType){
     console.log(inputType);
     switch(inputType) {
         case "user":
              var nameUser = $('input[name=user]').val();
-            if(nameUser.trim()==="" || /\d/.test(nameUser)){
-                errormessage("El nombre no puede contener numeros ni estar vacio");
-            }else{
+            if(nameUser.trim()===""){
+                errormessage("El nombre no puede estar vacio");
+            }
+            else if(/\d/.test(nameUser)){
+                errormessage("El nombre no puede contener numeros");
+            }
+            else{
                 $('input[name=user]').css('background-color', '#b4e7b3');
                 localStorage.setItem('nameUser',nameUser);
                 createBoxEmail();
@@ -59,7 +65,7 @@ function validateRegister(inputType){
                 $('input[name=mail]').css('background-color', '#b4e7b3');
                 createBoxTlf();
             }else{
-                errormessage("Email incorrecto");
+                errormessage("Email incorrecto. El campo correo electrónico debe contener como minimo el carácter '@' y '.'");
             }
             break;
 
@@ -72,7 +78,7 @@ function validateRegister(inputType){
                 createBoxCountry();
                 
             } else {
-                errormessage("Teléfono incorrecto");
+                errormessage("Teléfono incorrecto. El campo de teléfono deben ser 9 numeros");
             }
             break;
             
@@ -272,7 +278,7 @@ function errormessage(message) {
 
     var content = $('<div>').addClass('content');
     var errorImage = $('<img>').attr({
-        src: 'error.png',
+        src: 'img/error.png',
         alt: 'Error Image'
     }).addClass('error-image');
 
