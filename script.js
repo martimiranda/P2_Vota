@@ -272,7 +272,7 @@ function errormessage(message) {
 
     var content = $('<div>').addClass('content');
     var errorImage = $('<img>').attr({
-        src: 'error.png',
+        src: 'img/error.png',
         alt: 'Error Image'
     }).addClass('error-image');
 

@@ -17,7 +17,7 @@
             <div id="contactes">
                 <div id="contacte1">
                     <h4>Marcelo González</h4>
-                    <p>
+                    <p class="footer">
                         Teléfon: <a href="tel:+661794022">661-794-022</a><br>
                         Gmail: <a href="mailto:marcelogr2004@gmail.com">marcelogr2004@gmail.com</a><br>
                         Instagram: <a href="https://www.instagram.com/mgonnzalezz" target="_blank">@mgonnzalezz</a>
@@ -25,10 +25,10 @@
                 </div>
                 <div id="contacte2">
                     <h4>Martí Miranda</h4>
-                    <p>
-                        Teléfon: <a href="tel:+123456789">123-456-789</a><br>
-                        Gmail: <a href="mailto:info@example.com">info@example.com</a><br>
-                        Instagram: <a href="https://www.instagram.com/tuinstagram" target="_blank">@tuinstagram</a>
+                    <p class="footer">
+                        Teléfon: <a href="tel:+689667587">689-667-587</a><br>
+                        Gmail: <a href="mailto:info@example.com">martimiranda2356@gmail.com</a><br>
+                        Instagram: <a href="https://www.instagram.com/martimiranda" target="_blank">@martimiranda</a>
                     </p>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         
         <div id="enllacos">
             <h2>Enlaces</h2>
-            <p>
+            <p class="footer">
                 Instituto: <a href="https://www.iesesteveterradas.cat/" target="_blank">Institut Esteve Terrades</a><br>
                 GitHub: <a href="https://github.com/Marcelogr04/P2_Vota.git" target="_blank">GitHub</a>
             </p>

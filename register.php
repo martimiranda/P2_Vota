@@ -13,7 +13,7 @@
         <h1>REGISTRO MARGOMI VOTOS</h1>
         <div class="menu">
             <a class='menul' href='index.php'><h2>inicio</h2></a>
-            <a class='menul' href='register.php'><h2>registrarse</h2></a>
+            <!-- <a class='menul' href='login.php'><h2>logearse</h2></a> -->
         </div>
     </header>
     <h1 id="reg"></h1>
@@ -64,7 +64,7 @@ try {
                     <div class="close-button"></div>
                 </div>
                 <div class="content">
-                    <img src="error.png" alt="Error Image" class="error-image">
+                    <img src="img/error.png" alt="Error Image" class="error-image">
                     <div class="text-and-button">
                         <h2>Error</h2>
                         <p>Ya existe una cuenta asociada a este correo electrónico</p>
@@ -107,13 +107,13 @@ try {
             
     }
 ?>
-<footer>
+    <footer>
         <div id="contacte">
             <h2>Contactos</h2>
             <div id="contactes">
                 <div id="contacte1">
                     <h4>Marcelo González</h4>
-                    <p>
+                    <p class="footer">
                         Teléfon: <a href="tel:+661794022">661-794-022</a><br>
                         Gmail: <a href="mailto:marcelogr2004@gmail.com">marcelogr2004@gmail.com</a><br>
                         Instagram: <a href="https://www.instagram.com/mgonnzalezz" target="_blank">@mgonnzalezz</a>
@@ -121,8 +121,8 @@ try {
                 </div>
                 <div id="contacte2">
                     <h4>Martí Miranda</h4>
-                    <p>
-                        Teléfon: <a href="tel:+123456789">689-667-587</a><br>
+                    <p class="footer">
+                        Teléfon: <a href="tel:+689667587">689-667-587</a><br>
                         Gmail: <a href="mailto:info@example.com">martimiranda2356@gmail.com</a><br>
                         Instagram: <a href="https://www.instagram.com/martimiranda" target="_blank">@martimiranda</a>
                     </p>
@@ -132,7 +132,7 @@ try {
         
         <div id="enllacos">
             <h2>Enlaces</h2>
-            <p>
+            <p class="footer">
                 Instituto: <a href="https://www.iesesteveterradas.cat/" target="_blank">Institut Esteve Terrades</a><br>
                 GitHub: <a href="https://github.com/Marcelogr04/P2_Vota.git" target="_blank">GitHub</a>
             </p>
