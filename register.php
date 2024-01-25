@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src="regsiter.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <h1>REGISTRO MARGOMI VOTOS</h1>
         <div class="menu">
             <a class='menul' href='index.php'><h2>inicio</h2></a>
-            <a class='menul' href='register.php'><h2>registrarse</h2></a>
+            <!-- <a class='menul' href='login.php'><h2>logearse</h2></a> -->
         </div>
     </header>
     <h1 id="reg"></h1>
@@ -116,7 +116,7 @@ try {
             
     }
 ?>
-<footer>
+    <footer>
         <div id="contacte">
             <h2>Contactos</h2>
             <div id="contactes">
@@ -131,7 +131,7 @@ try {
                 <div id="contacte2">
                     <h4>Martí Miranda</h4>
                     <p class="footer">
-                        Teléfon: <a href="tel:+123456789">689-667-587</a><br>
+                        Teléfon: <a href="tel:+689667587">689-667-587</a><br>
                         Gmail: <a href="mailto:info@example.com">martimiranda2356@gmail.com</a><br>
                         Instagram: <a href="https://www.instagram.com/martimiranda" target="_blank">@martimiranda</a>
                     </p>
