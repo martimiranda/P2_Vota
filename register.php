@@ -20,7 +20,7 @@
     <?php
 try {
     $dsn = "mysql:host=localhost;dbname=p2_votos";
-    $pdo = new PDO($dsn, 'marti', 'M*12_EGbb56');
+    $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
     $query = $pdo->prepare("select name from countries;");
     $query->execute();
     $row = $query->fetch();
