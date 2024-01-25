@@ -23,7 +23,6 @@ $('#validate').click(function(){
 
 });
 function validateRegister(inputType){
-    console.log(inputType);
     switch(inputType) {
         case "user":
              var nameUser = $('input[name=user]').val();
