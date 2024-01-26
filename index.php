@@ -29,8 +29,8 @@
         </ul>
     </main>
     <section>
-        <a class='button' href="login.php">logearse</a>
-        <a class='button' href="register.php">registrarse</a>
+        <a class='button' href="login.php">Logearse</a>
+        <a class='button' href="register.php">Registrarse</a>
     </section>
     <?php
     include('footer.php');

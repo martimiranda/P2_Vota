@@ -105,6 +105,21 @@ img {
     transition-duration: 1s;
 }
 
+.button2{
+    display: inline-block;
+    padding: 20px 40px;
+    margin: 25px 25px 10px 25px;
+    background-color: #333;
+    border: 2px solid #686565;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Lora', sans-serif;
+    transition-duration: 1s;
+}
+
 .button:hover:hover{
     transition-duration: 1s;
     background-color: #686565;
@@ -122,6 +137,15 @@ img {
     max-width: 300px;
     background-color: #fff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#box2 {
+    margin: 20px auto;
+    max-width: 30%;
+    background-color: #fff;
+    padding: 50px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
