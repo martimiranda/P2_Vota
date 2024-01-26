@@ -56,7 +56,25 @@
             $filas = $query->rowCount();
             if ($filas > 0) {
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
-                echo "Usuario Correcto: Hola ". $usuario["name"];
+                echo '<div class="error-window">
+                    <div class="title-bar">
+                        <div class="close-button"></div>
+                    </div>
+                    <div class="content">
+                        <img src="img/ready.gif" alt="Error Image" class="error-image">
+                        <div class="text-and-button">
+                            <h3>Hola '. $usuario["name"].'</h3>
+                            <form action="login.php">
+                                <h4>Iniciando sesscion...</h4>
+                            </form>
+                        </div>
+                    </div>
+                </div>';
+                echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "dashboard.php";
+                    }, 2000); // 2000 milisegundos (2 segundos)
+                </script>';
             } else {
                 echo '<div class="error-window">
                     <div class="title-bar">

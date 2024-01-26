@@ -13,7 +13,7 @@
      
 
     <div class="container">
-        <div id="box">
+        <div id="box2">
             <h1>Panel de control:</h1>
             <section>
                 <a class='button2' href="#">Crear Encuesta</a>
