@@ -174,6 +174,9 @@ function createBoxPwd(){
     );
 
     $('.container').append(pwdDiv);
+
+    scrollTo('input[name="pwd1"]');
+
     
 }
 
@@ -191,6 +194,9 @@ function createBoxEmail(){
     );
 
     $('.container').append(mailDiv);
+
+    scrollTo('input[name="mail"]');
+
     
 }
 function createBoxTlf(){
@@ -207,6 +213,8 @@ function createBoxTlf(){
     );
 
     $('.container').append(tlfDiv);
+
+    scrollTo('input[name="tlf"]');
     
 }
 function createBoxCountry() {
@@ -233,6 +241,9 @@ function createBoxCountry() {
     }));
 
     $('.container').append(countryDiv);
+
+    scrollTo('select[id="selectCountry"]');
+
 }
 function createBoxCity(){
     var cityDiv = $('<div id="box">').append(
@@ -248,6 +259,9 @@ function createBoxCity(){
     );
 
     $('.container').append(cityDiv);
+
+    scrollTo('input[name="city"]');
+
     
 }
 function createBoxCode(){
@@ -263,6 +277,9 @@ function createBoxCode(){
         })
     );
     $('.container').append(codeDiv);
+
+    scrollTo('input[name="postal_code"]');
+
     
 }
 function errormessage(message) {
@@ -293,6 +310,12 @@ function errormessage(message) {
 
     // Añadir la ventana emergente al final del body
     $('body').append(errorWindow);
+}
+
+function scrollTo(element) {
+    $('html, body').animate({
+        scrollTop: $(element).offset().top
+    }, 1200); 
 }
 
 
