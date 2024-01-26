@@ -12,6 +12,7 @@ $(document).ready(function(){
         inputElement.on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+            options=1;
         });
         var buttonElement = $('<button>').attr('id', 'validate').text('Validar');
         boxDiv.append(h4Element, inputElement, buttonElement);
@@ -23,6 +24,7 @@ $(document).ready(function(){
     });}
 });
 function validatePoll(type){
+    var ok = true;
     switch(type) {
         case "question":
              var nameQuestion = $('input[name=question]').val();
@@ -30,17 +32,64 @@ function validatePoll(type){
                 errormessage("La encuesta no puede estar vacia");
             }
             else{
-                $('input[name=user]').css('background-color', '#b4e7b3');
+                $('input[name=question]').css('background-color', '#b4e7b3');
                 localStorage.setItem('question',nameQuestion);
                 createBoxOptions();
             }
             break;
+        
+        case "options":
+            var options = [];
+            $('.optionsDiv').find('input').each(function() {
+                var val = $(this).val();
+                $(this).css('background-color', '#b4e7b3');
+                if(val.trim()===""){
+                    errormessage("No pueden existir opciones vacias");
+                    ok=false;
+                    $(this).css('background-color', '');
+                } 
+                options.push(val);
+            });
+
+            if(ok){localStorage.setItem('options', JSON.stringify(options));
+            createBoxDate();
         }
+
+            break;
+
+            case "date":
+                inicio = $('.startDate').val();
+                final = $('.endDate').val();
+                var fechaInicio = new Date(inicio);
+                var fechaFinal = new Date(final);
+                var actual = new Date();
+                if(inicio==='' || final===''){
+                    errormessage("Las fechas no pueden estar vacias");
+                }
+                else if(fechaInicio > fechaFinal){
+                    errormessage("La fecha de activación tiene que ser anterior a la de finalización");
+                }
+                else if(final===inicio){
+                    errormessage("Las fechas no pueden ser iguales");
+                }
+                else if(fechaInicio<actual){
+                    errormessage("La fecha de activación tiene que ser posterior al momento actual");
+                }     
+                else if(fechaFinal>fechaInicio && fechaInicio>actual){
+                    var start= fechaInicio.toJSON();
+                    var end = fechaFinal.toJSON();
+                    localStorage.setItem('start',start);
+                    localStorage.setItem('end',end);
+                    createBoxSendData();
+                }          
+    
+                break;
+        }
+        
 }
 
 function createBoxOptions() {
-    var containerDiv = $('<div>').addClass('container');
-    var boxDiv = $('<div>').addClass('box-options').attr('id', 'box');
+    var boxDiv = $('<div>').attr('id', 'box').attr('class','optionsDiv');
     var h4Element = $('<h4>').text('Opciones de respuesta:');
 
     var inputElement = $('<input>').addClass('input-option').attr({
@@ -54,25 +103,121 @@ function createBoxOptions() {
         name: 'option' + options,
         placeholder: 'Escriba aqui su opcion número ' + options
     });
-
-    var buttonElement = $('<button>').addClass('validate-button').attr('id', 'validate' + options).text('Aceptar');
-    var buttonElement2 = $('<button>').addClass('new-button').attr('id', 'new' + options).text('Añadir opcion');
+    inputElement.on('input', function () {
+        $(this).css('background-color', '');
+        $(this).closest('#box').nextAll('#box').remove();
+    });
+    inputElement2.on('input', function () {
+        $(this).css('background-color', '');
+        $(this).closest('#box').nextAll('#box').remove();
+    });
+    var buttonElement = $('<button>').addClass('validate-button').attr('id', 'validate').text('Aceptar');
+    var buttonElement2 = $('<button>').addClass('new-button').attr('id', 'new').text('Añadir opcion');
 
     boxDiv.append(h4Element, inputElement,inputElement2, buttonElement, buttonElement2);
-    containerDiv.append(boxDiv);
-    $('body').append(containerDiv);
-
-    // Incrementa el contador de opciones
-    options++;
-
-    $('#validate' + (options - 1)).click(function () {
-        if ($(this).closest('.box-options').next('.box-options').length === 0) {
-            validatePoll('question');
+    $('.container').append(boxDiv);
+    boxDiv.on('click', '#validate', function () {
+        console.log("click");
+        if ($(this).closest('#box').next('#box').length === 0) {
+            validatePoll('options');
         }
     });
-   
+    boxDiv.on('click', '#new', function () {
+        options++;
+        var inputElement = $('<input>').addClass('input-option').attr({
+            type: 'text',
+            name: 'option' + options,
+            placeholder: 'Escriba aqui su opcion número ' + options
+        });
+        inputElement.on('input', function () {
+            $(this).css('background-color', '');
+            $(this).closest('#box').nextAll('#box').remove();
+        });
+        inputElement.insertBefore($(this).prev('#validate'));
+    });
+    
+}
+function createBoxDate(){
+    var boxDiv = $('<div>').attr('id', 'box').attr('class','optionsDiv');
+    var h4Element = $('<h4>').text('Fecha de activación:');
+    var h4Element2 = $('<h4>').text('Fecha de finalización:');
+
+    var inputElement = $('<input>').addClass('startDate').attr({
+        type: 'datetime-local',
+        name: 'startDate',
+        placeholder: 'Fecha de activación'
+    });
+    options++;
+    var inputElement2 = $('<input>').addClass('endDate').attr({
+        type: 'datetime-local',
+        name: 'endDate',
+        placeholder: 'Fecha de finalización'
+    });
+    inputElement.on('change', function () {
+        $(this).closest('#box').nextAll('#box').remove();
+    });
+    inputElement2.on('change', function () {
+        $(this).closest('#box').nextAll('#box').remove();
+    });
+    var buttonElement = $('<button>').addClass('validate-button').attr('id', 'validate').text('Aceptar');
+
+    boxDiv.append(h4Element, inputElement,h4Element2,inputElement2, buttonElement);
+    $('.container').append(boxDiv);
+    boxDiv.on('click', '#validate', function () {
+        console.log("click");
+        if ($(this).closest('#box').next('#box').length === 0) {
+            validatePoll('date');
+        }
+    });
+    
 }
 
+function createBoxSendData(password) {
+    var question = localStorage.getItem('question');
+    var optionsString = localStorage.getItem('options');
+
+    var options = JSON.parse(optionsString);
+
+    var start = localStorage.getItem('start');
+    var end = localStorage.getItem('end');
+    var form = $('<form>').attr({
+        action: 'create_poll.php',
+        method: 'POST'
+    });
+
+    var hiddenFields = [
+        { name: 'question', value: question },
+        { name: 'start', value: start },
+        { name: 'end', value: end }
+    ];
+
+
+    $.each(hiddenFields, function(index, field) {
+        $('<input>').attr({
+            type: 'hidden',
+            name: field.name,
+            value: field.value
+        }).appendTo(form);
+    });
+
+
+    $.each(options, function(index, option) {
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'option[]', 
+            value: option
+        }).appendTo(form);
+    });
+
+    form.append('<h4>Encuesta creada correctamente!!</h4>');
+    form.append($('<button>').attr('type', 'submit').text('Aceptar'));
+
+    var sendDiv = $('<div id="box">').append(form);
+
+    $('.container').append(sendDiv);
+
+
+}
 function errormessage(message) {
     var errorWindow = $('<div>').addClass('error-window');
     var titleBar = $('<div>').addClass('title-bar');
@@ -99,7 +244,6 @@ function errormessage(message) {
     content.append(errorImage, textAndButton);
     errorWindow.append(titleBar, content);
 
-    // Añadir la ventana emergente al final del body
     $('body').append(errorWindow);
 }
 

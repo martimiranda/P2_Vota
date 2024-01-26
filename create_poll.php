@@ -9,6 +9,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <?php
+    session_start();
+    if(isset($_POST['question'])){
+    $creator = $_SESSION['user'];
+    $question = $_POST["question"];
+    $start = $_POST["start"];
+    $end = $_POST["end"];
     
+    $options = isset($_POST["option"]) ? $_POST["option"] : [];
+
+    echo "Pregunta: $question<br>";
+    echo "Fecha de inicio: $start<br>";
+    echo "Fecha de fin: $end<br>";
+
+    if (!empty($options)) {
+        echo "Opciones seleccionadas:<br>";
+        foreach ($options as $option) {
+            echo "$option<br>";
+        }
+    } else {
+        echo "No se seleccionaron opciones.";
+    }
+
+    }
+    ?>
 </body>
 </html>
