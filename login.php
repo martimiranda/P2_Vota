@@ -7,50 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>MARGOMI VOTOS</h1>
-        <div class="menu">
-            <a class='menul' href='login.php'><h2>logearse</h2></a>
-            <a class='menul' href='register.php'><h2>registrarse</h2></a>
+    <?php
+    include('header.php');
+    ?>
+        <div class="container">
+            <div id="box">
+                <h1 style="text-align: left;">Login</h1>
+                <form action="login.php" method="post">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required>
+
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password" required>
+
+                    <button type="submit">Iniciar sesión</button>
+                </form>
+            </div>
         </div>
-    </header>
 
-    <main>
-
-    </main>
     <section>
 
     </section>
-    <footer>
-        <div id="contacte">
-            <h2>Contactos</h2>
-            <div id="contactes">
-                <div id="contacte1">
-                    <h4>Marcelo González</h4>
-                    <p class="footer">
-                        Teléfon: <a href="tel:+661794022">661-794-022</a><br>
-                        Gmail: <a href="mailto:marcelogr2004@gmail.com">marcelogr2004@gmail.com</a><br>
-                        Instagram: <a href="https://www.instagram.com/mgonnzalezz" target="_blank">@mgonnzalezz</a>
-                    </p>
-                </div>
-                <div id="contacte2">
-                    <h4>Martí Miranda</h4>
-                    <p class="footer">
-                        Teléfon: <a href="tel:+689667587">689-667-587</a><br>
-                        Gmail: <a href="mailto:info@example.com">martimiranda2356@gmail.com</a><br>
-                        Instagram: <a href="https://www.instagram.com/martimiranda" target="_blank">@martimiranda</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <div id="enllacos">
-            <h2>Enlaces</h2>
-            <p class="footer">
-                Instituto: <a href="https://www.iesesteveterradas.cat/" target="_blank">Institut Esteve Terrades</a><br>
-                GitHub: <a href="https://github.com/Marcelogr04/P2_Vota.git" target="_blank">GitHub</a>
-            </p>
-        </div>
-    </footer>
+    <?php
+    include('footer.php');
+    ?>
 </body>
 </html>
