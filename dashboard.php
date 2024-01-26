@@ -16,7 +16,7 @@
         <div id="box2">
             <h1>Panel de control:</h1>
             <section>
-                <a class='button2' href="#">Crear Encuesta</a>
+                <a class='button2' href="create_poll.php">Crear Encuesta</a>
                 <a class='button2' href="#">Listar Encuesta</a>
             </section>
         </div>

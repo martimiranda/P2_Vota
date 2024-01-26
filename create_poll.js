@@ -17,7 +17,7 @@ $(document).ready(function(){
         var buttonElement = $('<button>').attr('id', 'validate').text('Validar');
         boxDiv.append(h4Element, inputElement, buttonElement);
         containerDiv.append(boxDiv);
-        $('body').append(containerDiv);
+        $('#reg').append(containerDiv);
     $('#validate').click(function(){
         if (boxDiv.next('#box').length === 0) {
         validatePoll('question');  }
@@ -135,6 +135,7 @@ function createBoxOptions() {
         });
         inputElement.insertBefore($(this).prev('#validate'));
     });
+    scrollTo('input[name="option1"]');
     
 }
 function createBoxDate(){
@@ -169,7 +170,7 @@ function createBoxDate(){
             validatePoll('date');
         }
     });
-    
+    scrollTo('input[name="startDate"]');
 }
 
 function createBoxSendData(password) {
@@ -216,6 +217,8 @@ function createBoxSendData(password) {
 
     $('.container').append(sendDiv);
 
+    scrollTo('input[name="end"]');
+
 
 }
 function errormessage(message) {
@@ -248,3 +251,8 @@ function errormessage(message) {
 }
 
 
+function scrollTo(element) {
+    $('html, body').animate({
+        scrollTop: $(element).offset().top
+    }, 1200); 
+}

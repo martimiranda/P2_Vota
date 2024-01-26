@@ -10,6 +10,10 @@
 </head>
 <body>
     <?php
+    include('header.php');
+    ?>
+    <h1 id="reg"></h1>
+    <?php
     session_start();
     if(isset($_POST['question'])){
     $creator = $_SESSION['user'];
@@ -33,6 +37,9 @@
     }
 
     }
+    ?>
+    <?php
+    include('footer.php');
     ?>
 </body>
 </html>
