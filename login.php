@@ -61,7 +61,7 @@ $_SESSION['page'] = 'login'
             if ($filas > 0) {
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['usuario'] = $usuario["name"];
-                $_SESSION['user_id']= true;
+                $_SESSION['user_id'] = true;
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>
