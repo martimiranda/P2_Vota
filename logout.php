@@ -29,11 +29,8 @@ $_SESSION['page'] = 'logout'
 
     <?php
     include('footer.php');
-    // Eliminar todas las variables de sesión
-    session_unset();
-
-    // Destruir la sesión
-    session_destroy();
+    unset($_SESSION['usuario']);
+    unset($_SESSION['user_id']);
     ?>
     <script>
         setTimeout(function() {
