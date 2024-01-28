@@ -1,6 +1,8 @@
 <?php
 session_start();
-$_SESSION['page'] = 'login'
+$_SESSION['page'] = 'login';
+echo $_SESSION['user_id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
