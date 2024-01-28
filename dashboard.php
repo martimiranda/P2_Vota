@@ -13,7 +13,7 @@ $_SESSION['page'] = 'dashboard'
 <body>
     <?php
     if (isset($_SESSION['user_id'])) {
-        //http_response_code(403);
+        http_response_code(403);
         include('errores/error403.php');
     }
     $_SESSION['page'] = 'dashboard';
