@@ -1,6 +1,11 @@
 <?php 
 session_start();
-$_SESSION['page'] = 'dashboard'
+$_SESSION['page'] = 'dashboard';
+if (isset($_SESSION['user_id'])) {
+    http_response_code(403);
+    include('errores/error403.php');
+    exit;
+} else {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,10 +17,6 @@ $_SESSION['page'] = 'dashboard'
 </head>
 <body>
     <?php
-    if (isset($_SESSION['user_id'])) {
-        http_response_code(403);
-        include('errores/error403.php');
-    }
     $_SESSION['page'] = 'dashboard';
     include('header.php');
     ?>
@@ -34,6 +35,7 @@ $_SESSION['page'] = 'dashboard'
 
     <?php
     include('footer.php');
+}
     ?>
 
 </body>
