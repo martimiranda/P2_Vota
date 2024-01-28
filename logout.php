@@ -12,8 +12,6 @@ $_SESSION['page'] = 'logout'
 </head>
 <body>
     <?php
-    $_SESSION['usuario'] = "";
-    $_SESSION['user_id']= false;
     include('header.php');
     ?>
      
@@ -31,6 +29,11 @@ $_SESSION['page'] = 'logout'
 
     <?php
     include('footer.php');
+    // Eliminar todas las variables de sesión
+    session_unset();
+
+    // Destruir la sesión
+    session_destroy();
     ?>
     <script>
         setTimeout(function() {
