@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['page'] = 'register'
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

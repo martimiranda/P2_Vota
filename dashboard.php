@@ -1,3 +1,7 @@
+<?php 
+session_start();
+$_SESSION['page'] = 'dashboard'
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,13 +12,18 @@
 </head>
 <body>
     <?php
+    if (!isset($_SESSION['user_id'])) {
+        http_response_code(403);
+        die('403 Forbidden');
+    }
+    $_SESSION['page'] = 'dashboard';
     include('header.php');
     ?>
      
 
     <div class="container">
         <div id="box2">
-            <h1>Panel de control:</h1>
+            <h1>Panel de control</h1>
             <section>
                 <a class='button2' href="create_poll.php">Crear Encuesta</a>
                 <a class='button2' href="#">Listar Encuesta</a>

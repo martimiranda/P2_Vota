@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['page'] = 'login'
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -56,12 +60,16 @@
             $filas = $query->rowCount();
             if ($filas > 0) {
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['usuario'] = $usuario["name"];
+                $_SESSION['user_id']= true;
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>
                     </div>
                     <div class="content">
-                        <img src="img/ready.gif" alt="Error Image" class="error-image">
+                    <div id="contenedor">
+                        <div class="loader" id="loader">Loading...</div>
+                    </div>
                         <div class="text-and-button">
                             <h3>Hola '. $usuario["name"].'</h3>
                             <form action="login.php">

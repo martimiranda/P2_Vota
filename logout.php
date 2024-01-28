@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['page'] = 'logout'
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +12,8 @@
 </head>
 <body>
     <?php
+    $_SESSION['usuario'] = "";
+    $_SESSION['user_id']= false;
     include('header.php');
     ?>
      
@@ -16,7 +22,9 @@
         <div id="box">
             <h1>Cerrando sesión</h1>
             <p>Gracias por utilizar nuestra aplicacion...</p>
-            <img src="ruta/al/gif/cerrar-sesion.gif" alt="Cerrar sesión">
+            <div id="contenedor">
+                 <div class="loader" id="loader">Loading...</div>
+            </div>
         </div>
     </div>
 
@@ -27,7 +35,7 @@
     <script>
         setTimeout(function() {
             window.location.href = 'index.php';
-        }, 5000);
+        }, 2000);
     </script>
 </body>
 </html>

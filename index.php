@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['page'] = 'index'
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
