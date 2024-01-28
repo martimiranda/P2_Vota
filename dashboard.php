@@ -12,9 +12,9 @@ $_SESSION['page'] = 'dashboard'
 </head>
 <body>
     <?php
-    if (!isset($_SESSION['user_id'])) {
-        http_response_code(403);
-        die('403 Forbidden');
+    if (isset($_SESSION['user_id'])) {
+        //http_response_code(403);
+        include('errores/error403.php');
     }
     $_SESSION['page'] = 'dashboard';
     include('header.php');
