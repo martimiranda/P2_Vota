@@ -3,10 +3,30 @@
 if ($_SESSION['page'] == 'register' || $_SESSION['page'] == 'login') {
     ?>
     <header>
-    <a style="text-decoration: none;" href='index.php'><h1>MARGOMI VOTOS</h1></a>
+    <?php
+            if ($_SESSION['page'] == 'register' ) {
+        ?>
+            <h1>Pagina de Registro</h1>
+        <?php
+            } else {
+        ?>
+            <h1>Login</h1>
+        <?php
+            } 
+        ?>
     <div class="menu">
-        <a class='menul' href='login.php'><h2>Logearse</h2></a>
-        <a class='menul' href='register.php'><h2>Registrarse</h2></a>
+        <a class='menul' href='index.php'><h2>Inicio</h2></a>
+        <?php
+            if ($_SESSION['page'] == 'register' ) {
+        ?>
+            <a class='menul' href='login.php'><h2>Logearse</h2></a>
+        <?php
+            } else {
+        ?>
+            <a class='menul' href='register.php'><h2>Registrarse</h2></a>
+        <?php
+            } 
+        ?>
     </div>
 </header>
 <?php
