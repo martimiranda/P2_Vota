@@ -14,7 +14,8 @@ $_SESSION['page'] = 'logout'
     <?php
     include('header.php');
     ?>
-     
+    <h1 id="reg"></h1>
+
 
     <div class="container">
         <div id="box">
@@ -28,6 +29,8 @@ $_SESSION['page'] = 'logout'
 
 
     <?php
+    include('sistemLog.php');
+    registrarEvento($_SESSION["usuario"]. " a cerrado la sesión");
     include('footer.php');
     unset($_SESSION['usuario']);
     unset($_SESSION['user_id']);

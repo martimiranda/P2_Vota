@@ -15,6 +15,8 @@ $_SESSION['page'] = 'login';
     <?php
     include('header.php');
     ?>
+        <h1 id="reg">Login</h1>
+
         <div class="container">
                 <div id="box2">
                 <h1 style="text-align: left;">Iniciar sesión</h1>
@@ -33,6 +35,8 @@ $_SESSION['page'] = 'login';
     <?php
 
         //phpinfo();
+        include('sistemLog.php');
+
         try {
             $hostname = "localhost";
             $dbname = "p2_votos";
@@ -62,6 +66,7 @@ $_SESSION['page'] = 'login';
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['usuario'] = $usuario["name"];
                 $_SESSION['user_id'] = $usuario["user_id"]; 
+                registrarEvento($_SESSION["usuario"]. " a iniciar sesión");
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>
@@ -84,6 +89,7 @@ $_SESSION['page'] = 'login';
                     }, 2000); // 2000 milisegundos (2 segundos)
                 </script>';
             } else {
+                registrarEvento("ERROR: Usuario o contraseña incorrectos");
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>
