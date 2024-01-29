@@ -22,59 +22,32 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     include('header.php');
     ?>
 
-    <h1 id="reg">Listas Encuestas Creadas</h1>
+    <h1 id="reg">Listado de Encuestas</h1>
 
     <?php
     $userId = $_SESSION['user_id'];
-    $username = $_SESSION['usuario'];
 
-    if (isset($_POST['question'])) {
-        $creator = $_SESSION['user_id'];
-        $question = $_POST["question"];
-        $start = date("Y-m-d H:i:s", strtotime($_POST["start"])); 
-        $end = date("Y-m-d H:i:s", strtotime($_POST["end"])); 
-
-        try {
-            $dsn = "mysql:host=localhost;dbname=p2_votos";
-            $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
-            $query = $pdo->prepare("INSERT INTO questions (date_start, date_end, question, creator_id) VALUES (:date_start, :date_end, :question, :creator_id)");
-            $query->bindParam(':date_start', $start, PDO::PARAM_STR);
-            $query->bindParam(':date_end', $end, PDO::PARAM_STR);
-            $query->bindParam(':question', $question, PDO::PARAM_STR);
-            $query->bindParam(':creator_id', $creator, PDO::PARAM_INT);
-            $query->execute();
-
-            $question_id = $pdo->lastInsertId();
-            $options = isset($_POST["option"]) ? $_POST["option"] : [];
-
-            if (!empty($options)) {
-
-                foreach ($options as $option) {
-                    $option_query = $pdo->prepare("INSERT INTO options (question_id, option_text) VALUES (:question_id, :option_text)");
-                    $option_query->bindParam(':question_id', $question_id, PDO::PARAM_INT);
-                    $option_query->bindParam(':option_text', $option, PDO::PARAM_STR);
-                    $option_query->execute();
-
-                    if ($option_query->rowCount() > 0) {
-                    } else {
-                        echo "Error al insertar la opción '$option'<br>";
-                    }
-                }
-                echo '<div id="poll_created" class="container">
-                <div id="box">
-                    <form action="dashboard.php" method="POST">
-                        <h4>Encuesta creada correctamente!!</h4>
-                        <button class="accept-button" type="submit">Aceptar</button>
-                    </form>
-                </div>
-            </div>';
-            } 
-
-        } catch (PDOException $e) {
-            echo "Error en la base de datos: " . $e->getMessage();
+    try {
+        $dsn = "mysql:host=localhost;dbname=p2_votos";
+        $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
+        $query = $pdo->prepare("select * from questions where creator_id = $userId;");
+        $query->execute();
+        $row = $query->fetch();
+        $correct = false;
+        while ( $row ) {
+            $question = $row['question'];
+            echo '<div id="box">
+                <h4>'.$question.'</h4>
+             </div>';
+            $row = $query->fetch();
+            $correct=true;
         }
-    }
-
+        if(!$correct){
+            echo "incorrecto";
+        }
+        } catch (PDOException $e){
+            echo $e->getMessage();
+        }
     include('footer.php');
 }
     ?>
