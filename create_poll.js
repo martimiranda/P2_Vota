@@ -173,7 +173,7 @@ function createBoxDate(){
     scrollTo('input[name="startDate"]');
 }
 
-function createBoxSendData(password) {
+function createBoxSendData() {
     var question = localStorage.getItem('question');
     var optionsString = localStorage.getItem('options');
 
@@ -210,14 +210,14 @@ function createBoxSendData(password) {
         }).appendTo(form);
     });
 
-    form.append('<h4>Encuesta creada correctamente!!</h4>');
-    form.append($('<button>').attr('type', 'submit').text('Aceptar'));
+    form.append('<h4>Datos de encuesta correctos!!</h4>');
+    form.append($('<button>').attr('type', 'submit').text('Crear'));
 
     var sendDiv = $('<div id="box">').append(form);
 
     $('.container').append(sendDiv);
 
-    scrollTo('input[name="end"]');
+    scrollTo('form');
 
 
 }
