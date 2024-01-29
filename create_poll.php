@@ -1,3 +1,13 @@
+<?php 
+session_start();
+$_SESSION['page'] = 'create_poll';
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    http_response_code(403);
+    include('errores/error403.php');
+    exit;
+} else {
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +24,8 @@
     ?>
     <h1 id="reg"></h1>
     <?php
-    session_start();
+    $userId= $_SESSION['user_id'];
+    $username= $_SESSION['usuario'];
     if(isset($_POST['question'])){
     $creator = $_SESSION['user'];
     $question = $_POST["question"];
@@ -40,6 +51,7 @@
     ?>
     <?php
     include('footer.php');
+}
     ?>
 </body>
 </html>
