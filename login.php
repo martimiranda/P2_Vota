@@ -66,7 +66,7 @@ $_SESSION['page'] = 'login';
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['usuario'] = $usuario["name"];
                 $_SESSION['user_id'] = $usuario["user_id"]; 
-                registrarEvento($_SESSION["usuario"]. " a iniciar sesión");
+                registrarEvento($_SESSION["usuario"]. " a iniciado sesión");
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>
