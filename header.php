@@ -3,17 +3,8 @@
 if ($_SESSION['page'] == 'register' || $_SESSION['page'] == 'login') {
     ?>
     <header>
-    <?php
-            if ($_SESSION['page'] == 'register' ) {
-        ?>
-            <h1>Pagina de Registro</h1>
-        <?php
-            } else {
-        ?>
-            <h1>Login</h1>
-        <?php
-            } 
-        ?>
+    <h1>MARGOMI VOTOS</h1>
+
     <div class="menu">
         <a class='menul' href='index.php'><h2>Inicio</h2></a>
         <?php
@@ -64,7 +55,7 @@ if ($_SESSION['page'] == 'dashboard') {
 if ($_SESSION['page'] == 'create_poll') {
     ?>
     <header>
-        <h1>Creación de Encuestas</h1>
+        <h1>MARGOMI VOTOS</h1>
         <h2 class="usuario_log"><i class="fas fa-user"></i><?php echo "  ".$_SESSION['usuario'] ?></h2>
         <div class="menu">
             <a class='menul' href='dashboard.php'><h2>Panel de control</h2></a>

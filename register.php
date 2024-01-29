@@ -16,8 +16,10 @@ $_SESSION['page'] = 'register'
     <?php
     include('header.php');
     ?>
-    <h1 id="reg"></h1>
+    <h1 id="reg">Pagina de Registro</h1>
     <?php
+    include('sistemLog.php');
+
 try {
     $dsn = "mysql:host=localhost;dbname=p2_votos";
     $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
