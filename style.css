@@ -340,3 +340,28 @@ footer {
     }
   }
     
+
+#questionTable {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+#questionTable th, #questionTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#questionTable th {
+    background-color: #333; 
+    color: white;
+}
+
+#questionTable tr:nth-child(even) {
+    background-color: #e6f7ff; 
+}
+
+#questionTable tr:nth-child(odd) {
+    background-color: #fff; 
+}

@@ -62,8 +62,9 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 }
                 echo '<div id="poll_created" class="container">
                 <div id="box">
-                    <form action="dashboard.php" method="POST">
+                    <form action="list_polls.php" method="POST">
                         <h4>Encuesta creada correctamente!!</h4>
+                        <input type="hidden" value='.$question_id.' name="questionId"/>
                         <button class="accept-button" type="submit">Aceptar</button>
                     </form>
                 </div>
