@@ -29,12 +29,13 @@ header {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 
 .menu {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .menul {
@@ -43,6 +44,8 @@ header {
     display: inline-block;
     border: 2px solid #686565;
     transition: background-color 0.3s;
+    border-radius: 15px;
+    margin-left: 10px;
 }
 
 .menul:hover {
@@ -51,6 +54,10 @@ header {
 
 h2 {
     margin: 10px;
+}
+
+.usuario_log {
+    margin-bottom: 25px;
 }
 
 h1{
