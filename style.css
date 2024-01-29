@@ -15,13 +15,13 @@ body {
     background-image: url('img/error403.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 1200px;
+    background-size: 700px;
 }
 .error404 {
     background-image: url('img/error404.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 1200px;
+    background-size: 500px;
 }
 
 /* HEADER */

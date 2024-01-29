@@ -9,7 +9,7 @@
 </head>
 <body class="error404">
     <header>
-        <h1>ERROR 404 - Not Found</h1>
+        <h1>ERROR 404 - Pagina no Existe</h1>
     </header>
     <footer>
         <div id="contacte">

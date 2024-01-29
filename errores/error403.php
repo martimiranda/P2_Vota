@@ -9,7 +9,7 @@
 </head>
 <body class="error403">
     <header>
-        <h1>ERROR 403 - Forbidden</h1>
+        <h1>ERROR 403 - No Tienes Permisos</h1>
     </header>
     <footer>
         <div id="contacte">
