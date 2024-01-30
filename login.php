@@ -31,7 +31,6 @@ $_SESSION['page'] = 'login';
                     </form>
                 </div>
         </div>
-
     <?php
 
         //phpinfo();
