@@ -14,6 +14,12 @@ $(document).ready(function(){
             $(this).css('background-color', '');
             options=1;
         });
+        inputElement.on('keydown', function (event) {
+            if (event.key === 'Enter') {
+                if (boxDiv.next('#box').length === 0) {
+                    validatePoll('question');  }
+            }
+        });
         var buttonElement = $('<button>').attr('id', 'validate').text('Validar');
         boxDiv.append(h4Element, inputElement, buttonElement);
         containerDiv.append(boxDiv);
@@ -111,13 +117,26 @@ function createBoxOptions() {
         $(this).css('background-color', '');
         $(this).closest('#box').nextAll('#box').remove();
     });
+    inputElement.on('keydown', function (event) {
+        if (event.key === 'Enter') {
+            if ($(this).closest('#box').next('#box').length === 0) {
+                validatePoll('options');
+            }
+        }
+    });
+    inputElement2.on('keydown', function (event) {
+        if (event.key === 'Enter') {
+            if ($(this).closest('#box').next('#box').length === 0) {
+                validatePoll('options');
+            }
+        }
+    });
     var buttonElement = $('<button>').addClass('validate-button').attr('id', 'validate').text('Aceptar');
     var buttonElement2 = $('<button>').addClass('new-button').attr('id', 'new').text('Añadir opcion');
 
     boxDiv.append(h4Element, inputElement,inputElement2, buttonElement, buttonElement2);
     $('.container').append(boxDiv);
     boxDiv.on('click', '#validate', function () {
-        console.log("click");
         if ($(this).closest('#box').next('#box').length === 0) {
             validatePoll('options');
         }
@@ -132,6 +151,20 @@ function createBoxOptions() {
         inputElement.on('input', function () {
             $(this).css('background-color', '');
             $(this).closest('#box').nextAll('#box').remove();
+        });
+
+        inputElement.on('keydown', function (event) {
+            if (event.key === 'Backspace' && $(this).val().trim() === '') {
+                $(this).remove();
+                options--;
+            }
+        });
+        inputElement.on('keydown', function (event) {
+            if (event.key === 'Enter') {
+                if ($(this).closest('#box').next('#box').length === 0) {
+                    validatePoll('options');
+                }
+            }
         });
         inputElement.insertBefore($(this).prev('#validate'));
     });
@@ -148,7 +181,6 @@ function createBoxDate(){
         name: 'startDate',
         placeholder: 'Fecha de activación'
     });
-    options++;
     var inputElement2 = $('<input>').addClass('endDate').attr({
         type: 'datetime-local',
         name: 'endDate',
