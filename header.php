@@ -45,7 +45,7 @@ if ($_SESSION['page'] == 'dashboard') {
     <h1>MARGOMI VOTOS</h1>
     <h2 class="usuario_log">Hola, <?php echo $_SESSION['usuario'] ?></h2>
     <div class="menu">
-        <a class='menul' href='logout.php'><h2>Cerrar sessión</h2></a>
+        <a class='menul' href='logout.php'><h2>Cerrar sesión</h2></a>
     </div>
 </header>
 <?php
@@ -59,7 +59,7 @@ if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls') {
         <h2 class="usuario_log"><i class="fas fa-user"></i><?php echo "  ".$_SESSION['usuario'] ?></h2>
         <div class="menu">
             <a class='menul' href='dashboard.php'><h2>Panel de control</h2></a>
-            <a class='menul' href='logout.php'><h2>Cerrar sessión</h2></a>
+            <a class='menul' href='logout.php'><h2>Cerrar sesión</h2></a>
         </div>
     </header>
 <?php

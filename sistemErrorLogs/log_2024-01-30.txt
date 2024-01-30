@@ -3,3 +3,7 @@
 [2024-01-30 16:47:48] Martí a iniciado sesión
 [2024-01-30 16:59:48] Martí a iniciado sesión
 [2024-01-30 17:00:03] Martí a iniciado sesión
+[2024-01-30 17:23:45] ERROR: Usuario o contraseña incorrectos
+[2024-01-30 17:23:52] Mehdi a iniciado sesión
+[2024-01-30 17:24:03] Mehdi a cerrado la sesión
+[2024-01-30 17:24:14] Mehdi a iniciado sesión
