@@ -1,3 +1,4 @@
+drop database if exists p2_votos;
 create database p2_votos;
 use p2_votos;
  create table countries (  
