@@ -12,13 +12,19 @@ $(document).ready(function(){
         $(this).closest('#box').nextAll('#box').remove();
         $(this).css('background-color', '');
     });
+    inputElement.on('keydown', function (event) {
+        if (event.key === 'Enter') {
+            if (boxDiv.next('#box').length === 0) {
+                validateRegister('user');  }
+        }
+    });
     var buttonElement = $('<button>').attr('id', 'validate').text('Validar');
     boxDiv.append(h4Element, inputElement, buttonElement);
     containerDiv.append(boxDiv);
     $('#reg').append(containerDiv);
 $('#validate').click(function(){
     if (boxDiv.next('#box').length === 0) {
-    validateRegister($(this).prev("input[name]").attr("name"));  }
+    validateRegister('user');  }
 });}
 
 });
@@ -155,30 +161,42 @@ function createBoxSendData(password) {
 
 
 }
-function createBoxPwd(){
+function createBoxPwd() {
     var pwdDiv = $('<div id="box">').append(
         $('<h4>').text('Ingrese su nueva contraseña:'),
-        $('<input>').attr({ type: 'password', name: 'pwd1', placeholder: 'Nueva contraseña'}).on('input', function () {
+        $('<input>').attr({ type: 'password', name: 'pwd1', placeholder: 'Nueva contraseña' }).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+        }).on('keydown', function (event) {
+            if (event.key === 'Enter' && $(this).val().trim() === '') {
+                if (pwdDiv.next('#box').length === 0) {
+                    validateRegister('pwd2');
+                }
+            }
         }),
         $('<h4>').text('Repita contraseña'),
-        $('<input>').attr({ type: 'password', name: 'pwd2', placeholder: 'Contraseña repetida'}).on('input', function () {
+        $('<input>').attr({ type: 'password', name: 'pwd2', placeholder: 'Contraseña repetida' }).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+        }).on('keydown', function (event) {
+            if (event.key === 'Enter' && $(this).val().trim() === '') {
+                if (pwdDiv.next('#box').length === 0) {
+                    validateRegister('pwd2');
+                }
+            }
         }),
-        $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
+        $('<button>').attr({ id: 'validate' }).text('Validar').click(function () {
             if (pwdDiv.next('#box').length === 0) {
-                validateRegister($(this).prev("input[name]").attr("name"));  } 
+                validateRegister('pwd2');
+            }
         })
     );
 
     $('.container').append(pwdDiv);
 
     scrollTo('input[name="pwd1"]');
-
-    
 }
+
 
 function createBoxEmail(){
     var mailDiv = $('<div id="box">').append(
@@ -186,10 +204,16 @@ function createBoxEmail(){
         $('<input>').attr({ type: 'text', name: 'mail', placeholder: 'Correo electrónico'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+        }).on('keydown', function (event) {
+            if (event.key === 'Enter' && $(this).val().trim() === '') {
+                if (mailDiv.next('#box').length === 0) {
+                    validateRegister('mail');
+                }
+            }
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (mailDiv.next('#box').length === 0) {
-                validateRegister($(this).prev("input[name]").attr("name"));  }  
+                validateRegister('mail');  }  
         })
     );
 
@@ -205,10 +229,16 @@ function createBoxTlf(){
         $('<input>').attr({ type: 'text', name: 'tlf', placeholder: 'Número de teléfono'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+        }).on('keydown', function (event) {
+            if (event.key === 'Enter' && $(this).val().trim() === '') {
+                if (tlfDiv.next('#box').length === 0) {
+                    validateRegister('tlf');
+                }
+            }
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (tlfDiv.next('#box').length === 0) {
-                validateRegister($(this).prev("input[name]").attr("name"));  }
+                validateRegister('tlf');  }
         })
     );
 
@@ -251,10 +281,16 @@ function createBoxCity(){
         $('<input>').attr({ type: 'text', name: 'city', placeholder: 'Ciudad donde se localiza'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+        }).on('keydown', function (event) {
+            if (event.key === 'Enter' && $(this).val().trim() === '') {
+                if (cityDiv.next('#box').length === 0) {
+                    validateRegister('city');
+                }
+            }
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (cityDiv.next('#box').length === 0) {
-                validateRegister($(this).prev("input[name]").attr("name"));  }
+                validateRegister('city');  }
         })
     );
 
@@ -270,10 +306,16 @@ function createBoxCode(){
         $('<input>').attr({ type: 'text', name: 'postal_code', placeholder: 'Codigo postal'}).on('input', function () {
             $(this).closest('#box').nextAll('#box').remove();
             $(this).css('background-color', '');
+        }).on('keydown', function (event) {
+            if (event.key === 'Enter' && $(this).val().trim() === '') {
+                if (codeDiv.next('#box').length === 0) {
+                    validateRegister('postal_code');
+                }
+            }
         }),
         $('<button>').attr({ id: 'validate' }).text('Validar').click(function(){
             if (codeDiv.next('#box').length === 0) {
-                validateRegister($(this).prev("input[name]").attr("name"));  }  
+                validateRegister('postal_code');  }  
         })
     );
     $('.container').append(codeDiv);

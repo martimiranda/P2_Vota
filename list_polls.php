@@ -35,23 +35,46 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     try {
         $dsn = "mysql:host=localhost;dbname=p2_votos";
         $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
-        $query = $pdo->prepare("SELECT * FROM questions WHERE creator_id = $userId;");
+        $query = $pdo->prepare("SELECT * FROM questions WHERE creator_id = $userId ORDER BY question_id DESC;");
         $query->execute();
         $row = $query->fetch();
         $correct = false;
+        $use= true;
         echo '<tbody>';
         while ($row) {
+            if(isset($_POST['questionId']) && $use){
+                $question = $row['question'];
+                echo '<tr style="border: 2px solid black; font-weight: bold;">';
+                echo '<td>' . $question . '</td>';
+                echo '<td>Activa</td>';
+                echo '</tr>';
+                $row = $query->fetch();
+                $correct = true;
+                $use = false;
+            }else{
             $question = $row['question'];
             echo '<tr>';
             echo '<td>' . $question . '</td>';
             echo '<td>Activa</td>';
             echo '</tr>';
             $row = $query->fetch();
-            $correct = true;
+            $correct = true;}
         }
         echo '</tbody>';
         if (!$correct) {
-            echo "incorrecto";
+            echo ' <div class="error-window">
+            <div class="title-bar">
+                <div class="close-button"></div>
+            </div>
+            <div class="content">
+                <img src="img/error.png" alt="Error Image" class="error-image">
+                <div class="text-and-button">
+                    <h2>Error</h2>
+                    <p>No existen encuestas creadas</p>
+                    <button class="accept-button">Aceptar</button>
+                </div>
+            </div>
+        </div>';
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
