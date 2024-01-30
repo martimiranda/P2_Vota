@@ -78,7 +78,7 @@ $_SESSION['page'] = 'login';
                         <div class="text-and-button">
                             <h3>Hola '. $usuario["name"].'</h3>
                             <form action="login.php">
-                                <h4>Iniciando sesscion...</h4>
+                                <h4>Iniciando sesión...</h4>
                             </form>
                         </div>
                     </div>
