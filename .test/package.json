@@ -1,0 +1,16 @@
+{
+  "name": "votatests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-page-h1.js",
+  "scripts": {
+    "test": "node 01-page-h1.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^2.1.0",
+    "child-process": "^1.0.2",
+    "selenium-webdriver": "^4.17.0"
+  }
+}
