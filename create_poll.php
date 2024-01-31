@@ -57,7 +57,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
                     if ($option_query->rowCount() > 0) {
                     } else {
-                        registrarEvento("ERROR CREATE POLL (ID USER: $userId): Al insertar la opción '$option'");
+                        registrarEvento("ERROR CREATE POLL (ID USER: $userId): Al insertar la opcion '$option'");
                         echo "Error al insertar la opción '$option'<br>";
                     }
                 }

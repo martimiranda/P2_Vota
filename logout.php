@@ -31,7 +31,7 @@ $_SESSION['page'] = 'logout'
 
     <?php
     include('sistemLog.php');
-    registrarEvento("LOGOUT: ".$_SESSION["usuario"]. " a cerrado la sesión");
+    registrarEvento("LOGOUT: ".$_SESSION["usuario"]. " a cerrado la sesion");
     include('footer.php');
     unset($_SESSION['usuario']);
     unset($_SESSION['user_id']);
