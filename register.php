@@ -34,9 +34,11 @@ try {
         $correct=true;
     }
     if(!$correct){
-        echo "incorrecto";
+        registrarEvento("ERROR REGISTER: No encuetra la tabla de paises");
+        echo "No encuetra la tabla de países";
     }
     } catch (PDOException $e){
+        registrarEvento("REGISTER: ".$e->getMessage());
         echo $e->getMessage();
     }
     echo '<script>var countries_php = ' . json_encode($arrayCountries) . ';</script>';
@@ -61,6 +63,7 @@ try {
             $row = $query->fetch();
             
             if ($row) {
+                registrarEvento("ERROR REGISTER: Ya existe una cuenta asociada con $user o el tel $phone");
                 echo ' <div class="error-window">
                 <div class="title-bar">
                     <div class="close-button"></div>
@@ -77,6 +80,7 @@ try {
                 </div>
             </div>';
             } else {
+                registrarEvento("REGISTER: Cuenta de $user creada correctamente!!");
                 echo '<div id="account_created" class="container">
                 <div id="box">
                     <form action="index.php" method="POST">
@@ -107,12 +111,14 @@ try {
                                 //echo "correcto";
                             }
                     } catch (PDOException $e){
+                        registrarEvento("ERROR REGISTER: ". $e->getMessage());
                         echo $e->getMessage();
                     }
             }
             
         } catch (PDOException $e) {
             echo $e->getMessage();
+            registrarEvento("ERROR REGISTER: ". $e->getMessage());
         }
         
             

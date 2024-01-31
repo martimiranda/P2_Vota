@@ -32,6 +32,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                     <th>Estado</th>
                 </tr>
             </thead>';
+    include('sistemLog.php');
     try {
         $dsn = "mysql:host=localhost;dbname=p2_votos";
         $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
@@ -62,21 +63,28 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
         }
         echo '</tbody>';
         if (!$correct) {
-            echo ' <div class="error-window">
-            <div class="title-bar">
-                <div class="close-button"></div>
-            </div>
-            <div class="content">
-                <img src="img/error.png" alt="Error Image" class="error-image">
-                <div class="text-and-button">
-                    <h2>Error</h2>
-                    <p>No existen encuestas creadas</p>
-                    <button class="accept-button">Aceptar</button>
-                </div>
-            </div>
-        </div>';
+            registrarEvento("ERROR LIST POLL (ID USER: $userId): No existen encuestas creadas");
+
+            echo '<div class="error-window">
+                    <div class="title-bar"></div>
+                    <div class="content">
+                        <div class="text-and-button">
+                            <h2>INFORMACIÓN</h2>
+                            <p>De momento no existen encuestas creadas</p>
+                        </div>
+                    </div>
+                </div>';
+            echo '<script>';
+            echo 'var errorWindow = $(".error-window");';
+            echo 'var closeButton = $("<button>").addClass("accept-button").text("Aceptar").click(function () {';
+            echo '$("body").css("filter", "none");';
+            echo 'errorWindow.remove();';
+            echo '});';
+            echo 'errorWindow.find(".text-and-button").append(closeButton);';
+            echo '</script>';
         }
     } catch (PDOException $e) {
+        registrarEvento("ERROR LIST POLL (ID USER: $userId): ". $e->getMessage());
         echo $e->getMessage();
     }
     ?>

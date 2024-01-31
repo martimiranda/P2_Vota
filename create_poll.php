@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <?php
     $userId = $_SESSION['user_id'];
     $username = $_SESSION['usuario'];
-
+    include('sistemLog.php');
     if (isset($_POST['question'])) {
         $creator = $_SESSION['user_id'];
         $question = $_POST["question"];
@@ -57,9 +57,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
                     if ($option_query->rowCount() > 0) {
                     } else {
+                        registrarEvento("ERROR CREATE POLL (ID USER: $userId): Al insertar la opción '$option'");
                         echo "Error al insertar la opción '$option'<br>";
                     }
                 }
+                registrarEvento("CREATE POLL (ID USER: $userId): Encuesta de '$question' creada correctamente!!");
                 echo '<div id="poll_created" class="container">
                 <div id="box">
                     <form action="list_polls.php" method="POST">
@@ -72,6 +74,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
             } 
 
         } catch (PDOException $e) {
+            registrarEvento("ERROR CREATE POLL (ID USER: $userId): Error en la base de datos: " . $e->getMessage());
             echo "Error en la base de datos: " . $e->getMessage();
         }
     }
