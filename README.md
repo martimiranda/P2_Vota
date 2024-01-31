@@ -1,5 +1,4 @@
 # Margomi Votos - Portal de Encuestas
-## "_¡Bienvenido al proyecto de clase - al que le emos llamado MARGOMI VOTOS!_"
 
 ¡Bienvenido a Margomi Votos, tu portal personalizado para crear y participar en encuestas emocionantes! Aquí, puedes realizar diversas operaciones, desde crear tus propias encuestas hasta votar en las encuestas creadas por otros usuarios. Descubre todas las opciones que te ofrecemos:
 
