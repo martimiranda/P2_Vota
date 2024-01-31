@@ -7,3 +7,25 @@
 [2024-01-31 11:01:43] LOGOUT: Mehdi a cerrado la sesión
 [2024-01-31 15:07:40] LOGIN: Mehdi a iniciado sesión
 [2024-01-31 15:09:07] LOGOUT: Mehdi a cerrado la sesión
+[2024-01-31 16:07:56] ERROR LOGIN: Usuario o contrasenya incorrectos
+[2024-01-31 16:08:08] ERROR LOGIN: Usuario o contrasenya incorrectos
+[2024-01-31 16:08:14] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 16:19:57] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 16:31:30] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 16:32:09] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 16:32:53] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 16:36:05] REGISTER: Cuenta de Marti creada correctamente!!
+[2024-01-31 16:36:16] LOGIN: Marti a iniciado sesion
+[2024-01-31 16:36:26] ERROR LIST POLL (ID USER: 2): No existen encuestas creadas
+[2024-01-31 16:37:44] CREATE POLL (ID USER: 2): Encuesta de 'Donde nos vamos de viaje?' creada correctamente!!
+[2024-01-31 16:45:07] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 16:46:59] CREATE POLL (ID USER: 1): Encuesta de 'vuelos' creada correctamente!!
+[2024-01-31 16:47:48] CREATE POLL (ID USER: 1): Encuesta de 'Razas' creada correctamente!!
+[2024-01-31 16:48:26] CREATE POLL (ID USER: 1): Encuesta de 'Coches' creada correctamente!!
+[2024-01-31 16:49:20] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 16:56:32] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 16:58:22] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 16:58:48] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 16:58:57] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 16:59:26] LOGIN: Marti a iniciado sesion
+[2024-01-31 17:00:43] CREATE POLL (ID USER: 2): Encuesta de 'Sitio mas bonito de España?' creada correctamente!!

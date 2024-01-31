@@ -3,9 +3,9 @@ session_start();
 $_SESSION['page'] = 'register'
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8mb4">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,8 +22,8 @@ $_SESSION['page'] = 'register'
     include('sistemLog.php');
 
 try {
-    $dsn = "mysql:host=localhost;dbname=p2_votos";
-    $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
+    $dsn = "mysql:host=localhost;dbname=p2_votos;charset=utf8";
+    $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") );
     $query = $pdo->prepare("select name from countries;");
     $query->execute();
     $row = $query->fetch();
