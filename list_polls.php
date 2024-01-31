@@ -17,6 +17,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="list_polls.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/vote_icon_logo.png" />
 </head>
 <body>
     <?php include('header.php'); ?>

@@ -11,6 +11,7 @@ $_SESSION['page'] = 'register'
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="register.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/vote_icon_logo.png" />
 </head>
 <body>
     <?php

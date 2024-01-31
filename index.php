@@ -10,6 +10,7 @@ $_SESSION['page'] = 'index'
     <title>Inicio</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="shortcut icon" href="img/vote_icon_logo.png" />
 </head>
 <body>
     <?php

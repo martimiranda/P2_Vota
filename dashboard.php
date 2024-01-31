@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <title>Panel de control</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="shortcut icon" href="img/vote_icon_logo.png" />
 </head>
 <body>
     <?php
