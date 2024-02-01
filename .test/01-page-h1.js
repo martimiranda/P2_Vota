@@ -26,9 +26,15 @@ class MyTest extends BasePhpTest
         */
 
         await this.driver.get("http://localhost:8000/");
-        var text = await this.driver.findElement(By.tagName("h1")).getText();
+        var text = await this.driver.findElement(By.tagName("p")).getText();
 
-        assert( text=="Bienvenido Al Portal VotaYa", "Títol H1 de la pàgina incorrecte");
+        console.log("Texto real:", text);
+        console.log("Texto esperado:", 'Estás en nuestra página principal de Margomi Votos, un portal de votos donde puedes realizar múltiples operaciones, como crear encuestas a tu gusto, votar encuestas creadas por otros usuarios y mucho más. ¡Descubre cómo! Para comenzar, te invitamos a unirte a nosotros creando una nueva cuenta en "Registrarse" o, si ya tienes una cuenta, inicia sesión. Deberás proporcionar algunos datos.Una vez registrado y/o iniciado sesión, ingresarás a tu portal de Margomi Encuestas, donde encontrarás diferentes secciones para acceder:');
+
+        assert(
+        text === 'Estás en nuestra página principal de Margomi Votos, un portal de votos donde puedes realizar múltiples operaciones, como crear encuestas a tu gusto, votar encuestas creadas por otros usuarios y mucho más. ¡Descubre cómo! Para comenzar, te invitamos a unirte a nosotros creando una nueva cuenta en "Registrarse" o, si ya tienes una cuenta, inicia sesión. Deberás proporcionar algunos datos.Una vez registrado y/o iniciado sesión, ingresarás a tu portal de Margomi Encuestas, donde encontrarás diferentes secciones para acceder:'
+        );
+
 
         console.log("TEST OK");
 	}
