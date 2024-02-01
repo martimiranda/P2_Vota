@@ -51,78 +51,93 @@ try {
         $country = $_POST['country'];
         $city = $_POST['city'];
         $code = $_POST['postal'];
+        
+        // Obtener el phonecode del país seleccionado
+        $phonecode_query = "SELECT country_id FROM countries WHERE name=:namename";
+        $phonecode_stmt = $pdo->prepare($phonecode_query);
+        $phonecode_stmt->bindParam(':namename', $country, PDO::PARAM_STR);
+        $phonecode_stmt->execute();
+        $phonecode_result = $phonecode_stmt->fetch(PDO::FETCH_ASSOC);
+        if ($phonecode_result) {
 
-        try {
-
-            $query = $pdo->prepare("SELECT name FROM users WHERE email LIKE :mail OR phone = :phone");
-            
-            $query->bindParam(':mail', $mail, PDO::PARAM_STR);
-            $query->bindParam(':phone', $phone, PDO::PARAM_STR);
-            
-            $query->execute();
-            
-            $row = $query->fetch();
-            
-            if ($row) {
-                registrarEvento("ERROR REGISTER: Ya existe una cuenta asociada con $user o el tel. $phone");
-                echo ' <div class="error-window">
-                <div class="title-bar">
-                    <div class="close-button"></div>
-                </div>
-                <div class="content">
-                    <img src="img/error.png" alt="Error Image" class="error-image">
-                    <div class="text-and-button">
-                        <h2>Error</h2>
-                        <form action="register.php">
-                        <p>Ya existe una cuenta asociada con estos datos de registro</p>
-                        <button class="accept-button">Aceptar</button>
+            try {
+                $country_id = $phonecode_result['country_id'];
+                $query = $pdo->prepare("SELECT name FROM users WHERE email LIKE :mail OR phone = :phone");
+                
+                $query->bindParam(':mail', $mail, PDO::PARAM_STR);
+                $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+                
+                $query->execute();
+                
+                $row = $query->fetch();
+                
+                if ($row) {
+                    registrarEvento("ERROR REGISTER: Ya existe una cuenta asociada con $user o el tel. $phone");
+                    echo ' <div class="error-window">
+                    <div class="title-bar">
+                        <div class="close-button"></div>
+                    </div>
+                    <div class="content">
+                        <img src="img/error.png" alt="Error Image" class="error-image">
+                        <div class="text-and-button">
+                            <h2>Error</h2>
+                            <form action="register.php">
+                            <p>Ya existe una cuenta asociada con estos datos de registro</p>
+                            <button class="accept-button">Aceptar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>';
+                } else {
+                    registrarEvento("REGISTER: ¡Cuenta de $user creada correctamente!!");
+                    echo '<div id="account_created" class="container">
+                    <div id="box">
+                        <form action="index.php" method="POST">
+                            <h4>Cuenta creada correctamente!!</h4>
+                            <button class="accept-button" type="submit">Aceptar</button>
                         </form>
                     </div>
-                </div>
-            </div>';
-            } else {
-                registrarEvento("REGISTER: ¡Cuenta de $user creada correctamente!!");
-                echo '<div id="account_created" class="container">
-                <div id="box">
-                    <form action="index.php" method="POST">
-                        <h4>Cuenta creada correctamente!!</h4>
-                        <button class="accept-button" type="submit">Aceptar</button>
-                    </form>
-                </div>
-            </div>';
-                try {
-                    $query = $pdo->prepare("INSERT INTO users (name, email, password, phone, country_name, city, postal_code)
-                            VALUES (:user, :mail, SHA2(:pwd, 512), :phone, :country, :city, :code)");
-    
-                            $query->bindParam(':user', $user, PDO::PARAM_STR);
-                            $query->bindParam(':mail', $mail, PDO::PARAM_STR);
-                            $query->bindParam(':pwd', $pwd, PDO::PARAM_STR);
-                            $query->bindParam(':phone', $phone, PDO::PARAM_STR);
-                            $query->bindParam(':country', $country, PDO::PARAM_STR);
-                            $query->bindParam(':city', $city, PDO::PARAM_STR);
-                            $query->bindParam(':code', $code, PDO::PARAM_INT);
-                            
-                            $query->execute();
-
-                            $correct = ($query->rowCount() > 0);
-
-                            if (!$correct) {
-                                //echo "incorrecto";
-                            } else {
-                                //echo "correcto";
-                            }
-                    } catch (PDOException $e){
-                        registrarEvento("ERROR REGISTER: ". $e->getMessage());
-                        echo $e->getMessage();
-                    }
-            }
-            
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            registrarEvento("ERROR REGISTER: ". $e->getMessage());
-        }
+                </div>';
+                    try {
+                        $token = bin2hex(random_bytes(50));
+                        $tokenStatus = false;
+                        $conditionsStatus = false;
+                        $query = $pdo->prepare("INSERT INTO users (name, email, password, phone, country_id, city, postal_code, token, token_status, conditions_status)
+                                VALUES (:user, :mail, SHA2(:pwd, 512), :phone, :country, :city, :code, :token, :tokenStatus, :conditionsStatus)");
         
-            
+                                $query->bindParam(':user', $user, PDO::PARAM_STR);
+                                $query->bindParam(':mail', $mail, PDO::PARAM_STR);
+                                $query->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+                                $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+                                $query->bindParam(':country', $country_id, PDO::PARAM_STR);
+                                $query->bindParam(':city', $city, PDO::PARAM_STR);
+                                $query->bindParam(':code', $code, PDO::PARAM_INT);
+                                $query->bindParam(':token', $token, PDO::PARAM_STR);
+                                $query->bindParam(':tokenStatus', $tokenStatus, PDO::PARAM_BOOL);
+                                $query->bindParam(':conditionsStatus', $conditionsStatus, PDO::PARAM_BOOL);
+
+                                
+                                $query->execute();
+
+                                $correct = ($query->rowCount() > 0);
+
+                                if (!$correct) {
+                                    //echo "incorrecto";
+                                } else {
+                                    //echo "correcto";
+                                }
+                        } catch (PDOException $e){
+                            registrarEvento("ERROR REGISTER: ". $e->getMessage());
+                            echo $e->getMessage();
+                        }
+                }
+                
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                registrarEvento("ERROR REGISTER: ". $e->getMessage());
+            }
+        
+        } 
     }
 ?>
     <?php
