@@ -29,3 +29,15 @@
 [2024-01-31 16:58:57] LOGOUT: Mehdi a cerrado la sesion
 [2024-01-31 16:59:26] LOGIN: Marti a iniciado sesion
 [2024-01-31 17:00:43] CREATE POLL (ID USER: 2): Encuesta de 'Sitio mas bonito de España?' creada correctamente!!
+[2024-01-31 20:58:01] ERROR LOGIN: Usuario o contrasenya incorrectos
+[2024-01-31 21:09:16] REGISTER: Cuenta de Mehdi creada correctamente!!
+[2024-01-31 21:09:37] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 21:09:46] ERROR LIST POLL (ID USER: 1): No existen encuestas creadas
+[2024-01-31 21:10:21] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 21:17:01] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 21:17:14] ERROR LIST POLL (ID USER: 1): No existen encuestas creadas
+[2024-01-31 21:17:35] ERROR LIST POLL (ID USER: 1): No existen encuestas creadas
+[2024-01-31 21:18:16] LOGOUT: Mehdi a cerrado la sesion
+[2024-01-31 21:21:43] LOGIN: Mehdi a iniciado sesion
+[2024-01-31 21:22:57] ERROR LIST POLL (ID USER: 1): No existen encuestas creadas
+[2024-01-31 21:23:31] LOGOUT: Mehdi a cerrado la sesion
