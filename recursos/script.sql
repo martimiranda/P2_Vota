@@ -10,12 +10,13 @@ CREATE TABLE users (
 	email VARCHAR(255),
 	password VARCHAR(255),
 	phone INT,
-	country_name VARCHAR(255),
+	country_id int,
 	city VARCHAR(255),
 	postal_code INT,
 	token VARCHAR(255) NOT NULL,
     token_status BOOLEAN NOT NULL,
-    conditions_status BOOLEAN NOT NULL
+    conditions_status BOOLEAN NOT NULL,
+	FOREIGN KEY (`country_id`) references `countries`(`country_id`)
 );
 
 
