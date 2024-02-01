@@ -31,6 +31,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 <tr>
                     <th>Pregunta</th>
                     <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>';
     include('sistemLog.php');
@@ -46,18 +47,28 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
         while ($row) {
             if(isset($_POST['questionId']) && $use){
                 $question = $row['question'];
+                $questionId = $row['question_id'];
                 echo '<tr style="border: 2px solid black; font-weight: bold;">';
                 echo '<td>' . $question . '</td>';
                 echo '<td>Activa</td>';
+                echo '<form action="inviteVoters.php" method="POST">';
+                echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
+                echo '<td><button>Invitar</button></td>';
+                echo '</form>';
                 echo '</tr>';
                 $row = $query->fetch();
                 $correct = true;
                 $use = false;
             }else{
             $question = $row['question'];
+            $questionId = $row['question_id'];
             echo '<tr>';
             echo '<td>' . $question . '</td>';
             echo '<td>Activa</td>';
+            echo '<form action="inviteVoters.php" method="POST">';
+            echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
+            echo '<td><button>Invitar</button></td>';
+            echo '</form>';
             echo '</tr>';
             $row = $query->fetch();
             $correct = true;}
