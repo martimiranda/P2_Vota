@@ -10,7 +10,7 @@ $_SESSION['page'] = 'register'
     <title>Registro</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="register.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?no-cache=<?php echo time(); ?>">
     <link rel="shortcut icon" href="img/vote_icon_logo.png" />
 </head>
 <body>

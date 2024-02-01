@@ -8,7 +8,7 @@ $_SESSION['page'] = 'index'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?no-cache=<?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="shortcut icon" href="img/vote_icon_logo.png" />
 </head>
