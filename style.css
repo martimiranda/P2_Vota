@@ -345,6 +345,7 @@ footer {
     width: 50%;
     margin: 20px auto;
     border-collapse: collapse;
+    margin-bottom: 70px;
 }
 
 #questionTable th, #questionTable td {
@@ -359,7 +360,7 @@ footer {
 }
 
 #questionTable tr:nth-child(even) {
-    background-color: #e6f7ff; 
+    background-color: #d1cfee; 
 }
 
 #questionTable tr:nth-child(odd) {
