@@ -58,11 +58,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
                     if ($option_query->rowCount() > 0) {
                     } else {
-                        registrarEvento("ERROR CREATE POLL (ID USER: $userId): Al insertar la opcion '$option'");
+                        registrarEvento("ERROR CREATE POLL (ID USER: $userId): Al insertar la opción '$option'");
                         echo "Error al insertar la opción '$option'<br>";
                     }
                 }
-                registrarEvento("CREATE POLL (ID USER: $userId): Encuesta de '$question' creada correctamente!!");
+                registrarEvento("CREATE POLL (ID USER: $userId): ¡Encuesta de '$question' creada correctamente!!");
                 echo '<div id="poll_created" class="container">
                 <div id="box">
                     <form action="list_polls.php" method="POST">

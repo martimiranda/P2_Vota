@@ -67,7 +67,7 @@ $_SESSION['page'] = 'login';
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['usuario'] = $usuario["name"];
                 $_SESSION['user_id'] = $usuario["user_id"]; 
-                registrarEvento("LOGIN: ".$_SESSION["usuario"]. " a iniciado sesion");
+                registrarEvento("LOGIN: ".$_SESSION["usuario"]. " ha iniciado sesión");
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>
@@ -90,7 +90,7 @@ $_SESSION['page'] = 'login';
                     }, 2000); // 2000 milisegundos (2 segundos)
                 </script>';
             } else {
-                registrarEvento("ERROR LOGIN: Usuario o contrasenya incorrectos");
+                registrarEvento("ERROR LOGIN: Usuario o contraseña incorrectos");
                 echo '<div class="error-window">
                     <div class="title-bar">
                         <div class="close-button"></div>

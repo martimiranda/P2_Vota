@@ -35,7 +35,7 @@ try {
         $correct=true;
     }
     if(!$correct){
-        registrarEvento("ERROR REGISTER: No encuetra la tabla de paises");
+        registrarEvento("ERROR REGISTER: No encuentra la tabla de países");
         echo "No encuetra la tabla de países";
     }
     } catch (PDOException $e){
@@ -64,7 +64,7 @@ try {
             $row = $query->fetch();
             
             if ($row) {
-                registrarEvento("ERROR REGISTER: Ya existe una cuenta asociada con $user o el tel $phone");
+                registrarEvento("ERROR REGISTER: Ya existe una cuenta asociada con $user o el tel. $phone");
                 echo ' <div class="error-window">
                 <div class="title-bar">
                     <div class="close-button"></div>
@@ -81,7 +81,7 @@ try {
                 </div>
             </div>';
             } else {
-                registrarEvento("REGISTER: Cuenta de $user creada correctamente!!");
+                registrarEvento("REGISTER: ¡Cuenta de $user creada correctamente!!");
                 echo '<div id="account_created" class="container">
                 <div id="box">
                     <form action="index.php" method="POST">
