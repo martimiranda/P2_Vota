@@ -12,7 +12,10 @@ CREATE TABLE users (
 	phone INT,
 	country_name VARCHAR(255),
 	city VARCHAR(255),
-	postal_code INT
+	postal_code INT,
+	token VARCHAR(255) NOT NULL,
+    token_status BOOLEAN NOT NULL,
+    conditions_status BOOLEAN NOT NULL
 );
 
 

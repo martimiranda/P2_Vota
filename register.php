@@ -91,8 +91,11 @@ try {
                 </div>
             </div>';
                 try {
-                    $query = $pdo->prepare("INSERT INTO users (name, email, password, phone, country_name, city, postal_code)
-                            VALUES (:user, :mail, SHA2(:pwd, 512), :phone, :country, :city, :code)");
+                    $token = bin2hex(random_bytes(50));
+                    $tokenStatus = false;
+                    $conditionsStatus = false;
+                    $query = $pdo->prepare("INSERT INTO users (name, email, password, phone, country_name, city, postal_code, token, token_status, conditions_status)
+                            VALUES (:user, :mail, SHA2(:pwd, 512), :phone, :country, :city, :code, :token, :tokenStatus, :conditionsStatus)");
     
                             $query->bindParam(':user', $user, PDO::PARAM_STR);
                             $query->bindParam(':mail', $mail, PDO::PARAM_STR);
@@ -101,6 +104,10 @@ try {
                             $query->bindParam(':country', $country, PDO::PARAM_STR);
                             $query->bindParam(':city', $city, PDO::PARAM_STR);
                             $query->bindParam(':code', $code, PDO::PARAM_INT);
+                            $query->bindParam(':token', $token, PDO::PARAM_STR);
+                            $query->bindParam(':tokenStatus', $tokenStatus, PDO::PARAM_BOOL);
+                            $query->bindParam(':conditionsStatus', $conditionsStatus, PDO::PARAM_BOOL);
+
                             
                             $query->execute();
 
