@@ -131,18 +131,16 @@ try {
                                     //echo "correcto";
                                     
                                     //Enviar el Correo:
-                                    
                                     $to = $mail;
-                                    $subject = 'MARGOMI INFO';
-                                    $message = '';
-                                    $headers = 'From: verification@margomi.com' . "\r\n" .
+                                    $subject = 'VERIFICACIÓN MARGOMI';
+                                    $fromName = 'MARGOMI VOTOS';
+                                    $fromEmail = 'verification@margomi.com';
+                                    $headers = 'From: ' . $fromName . ' <' . $fromEmail . '>' . "\r\n" .
                                                 'Reply-To: mregbaoui.cf@iesesteveterradas.cat' . "\r\n" .
                                                 'X-Mailer: PHP/' . phpversion() . "\r\n" .
                                                 'Content-Type: text/html; charset=UTF-8';
-
-
                                     
-
+                                    
                                     // Enlace de verificación
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
