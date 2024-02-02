@@ -1,4 +1,7 @@
 <?php
+
+
+
 session_start();
 $_SESSION['page'] = 'register'
 ?>
@@ -22,6 +25,7 @@ $_SESSION['page'] = 'register'
     include('sistemLog.php');
 
 try {
+    
     $dsn = "mysql:host=localhost;dbname=p2_votos;charset=utf8";
     $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") );
     $query = $pdo->prepare("select name from countries;");
@@ -42,6 +46,7 @@ try {
         registrarEvento("REGISTER: ".$e->getMessage());
         echo $e->getMessage();
     }
+
     echo '<script>var countries_php = ' . json_encode($arrayCountries) . ';</script>';
     if(isset($_POST['user'])){
         $user = $_POST['user'];
@@ -52,7 +57,6 @@ try {
         $city = $_POST['city'];
         $code = $_POST['postal'];
         
-        // Obtener el phonecode del país seleccionado
         $phonecode_query = "SELECT country_id FROM countries WHERE name=:namename";
         $phonecode_stmt = $pdo->prepare($phonecode_query);
         $phonecode_stmt->bindParam(':namename', $country, PDO::PARAM_STR);
@@ -125,6 +129,34 @@ try {
                                     //echo "incorrecto";
                                 } else {
                                     //echo "correcto";
+                                    
+                                    //Enviar el Correo:
+                                    
+                                    $to = $mail;
+                                    $subject = 'MARGOMI INFO';
+                                    $message = '';
+                                    $headers = 'From: verification@margomi.com' . "\r\n" .
+                                                'Reply-To: mregbaoui.cf@iesesteveterradas.cat' . "\r\n" .
+                                                'X-Mailer: PHP/' . phpversion() . "\r\n" .
+                                                'Content-Type: text/html; charset=UTF-8';
+
+
+                                    // Agregar imagen embebida (si es necesario)
+                                    $message .= '<br><img src="img/encuestas-online.png">';
+
+                                    // Enlace de verificación
+                                    $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
+                                    $message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
+
+                                    if (mail($to, $subject, $message, $headers)) {
+                                        registrarEvento("El correo se envió correctamente a $mail");
+                                    } else {
+                                        $lastError = error_get_last();
+                                        $errorMessage = isset($lastError['message']) ? $lastError['message'] : 'No se pudo obtener detalles del error.';
+                                        registrarEvento("Error al enviar el correo a $mail. Detalles del error: $errorMessage");
+                                    }
+                                    
+                                    
                                 }
                         } catch (PDOException $e){
                             registrarEvento("ERROR REGISTER: ". $e->getMessage());

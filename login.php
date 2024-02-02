@@ -67,28 +67,59 @@ $_SESSION['page'] = 'login';
                 $usuario = $query->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['usuario'] = $usuario["name"];
                 $_SESSION['user_id'] = $usuario["user_id"]; 
-                registrarEvento("LOGIN: ".$_SESSION["usuario"]. " ha iniciado sesión");
-                echo '<div class="error-window">
-                    <div class="title-bar">
-                        <div class="close-button"></div>
-                    </div>
-                    <div class="content">
-                    <div id="contenedor">
-                        <div class="loader" id="loader">Loading...</div>
-                    </div>
-                        <div class="text-and-button">
-                            <h3>Hola '. $usuario["name"].'</h3>
-                            <form action="login.php">
-                                <h4>Iniciando sesión...</h4>
-                            </form>
+                $token_status = $usuario["token_status"];
+                $conditions_status = $usuario["conditions_status"];
+                
+                if ($token_status) {
+                    registrarEvento("LOGIN: ".$_SESSION["usuario"]. " ha iniciado sesión");
+
+                    echo '<div class="error-window">
+                            <div class="title-bar">
+                                <div class="close-button"></div>
+                            </div>
+                            <div class="content">
+                                <div id="contenedor">
+                                    <div class="loader" id="loader">Loading...</div>
+                                </div>
+                                <div class="text-and-button">
+                                    <h3>Hola '. $usuario["name"].'</h3>
+                                    <form action="login.php">
+                                        <h4>Iniciando sesión...</h4>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>';
+
+                    echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "dashboard.php";
+                            }, 2000); // 2000 milliseconds (2 seconds)
+                        </script>';
+                } else {
+                    registrarEvento("ERROR LOGIN: Usuario ".$_SESSION["usuario"]. " No a validado el correo");
+                    echo '<div class="error-window">
+                        <div class="title-bar">
+                            <div class="close-button"></div>
                         </div>
-                    </div>
-                </div>';
-                echo '<script>
-                    setTimeout(function() {
-                        window.location.href = "dashboard.php";
-                    }, 2000); // 2000 milisegundos (2 segundos)
-                </script>';
+                        <div class="content">
+                            <img src="img/error.png" alt="Error Image" class="error-image">
+                            <div class="text-and-button">
+                                <h2>Notificación</h2>
+                                <form action="login.php">
+                                    <p>Su correo no ha sido validado. Por favor, verifique su correo electrónico para completar el proceso de registro....</p>
+                                    <button class="accept-button">Aceptar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>';
+
+                    echo '<script>';
+                    echo 'var closeButton = $("<div>").addClass("close-button").click(function () {';
+                    echo '$("body").css("filter", "none");';
+                    echo 'errorWindow.remove();';
+                    echo '});';
+                    echo '</script>';
+                }
             } else {
                 registrarEvento("ERROR LOGIN: Usuario o contraseña incorrectos");
                 echo '<div class="error-window">
