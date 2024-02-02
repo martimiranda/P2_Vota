@@ -141,13 +141,13 @@ try {
                                                 'Content-Type: text/html; charset=UTF-8';
 
 
-                                    // Agregar imagen embebida (si es necesario)
-                                    $message .= '<br><img src="img/encuestas-online.png">';
+                                    
 
                                     // Enlace de verificación
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
-
+                                    // Agregar imagen embebida (si es necesario)
+                                    $message .= '<br><img src="img/encuestas-online.png">';
                                     if (mail($to, $subject, $message, $headers)) {
                                         registrarEvento("El correo se envió correctamente a $mail");
                                     } else {
