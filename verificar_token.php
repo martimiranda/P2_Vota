@@ -51,7 +51,16 @@ $_SESSION['page'] = 'logout'
                     $querystr = "UPDATE users SET token_status = TRUE WHERE token = ?";
                     $query = $pdo->prepare($querystr);
                     $query->execute([$token]);
-                    
+                    echo '
+                    <div class="container">
+                        <div id="box">
+                            <h1>VALIDACION DE CORREO</h1>
+                            <p>Correo validado correctamente...</p>
+                            <div id="contenedor">
+                                <div class="loader" id="loader">Loading...</div>
+                            </div>
+                        </div>
+                    </div>';
                     echo '<script>
                             setTimeout(function() {
                                 window.location.href = "login.php";
