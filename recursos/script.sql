@@ -42,11 +42,14 @@ CREATE TABLE votes(
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (option_id) REFERENCES options(option_id));
 
-CREATE TABLE invitations(
-	 invitation_id INT AUTO_INCREMENT PRIMARY KEY,
-	 question_id INT,
-	 email VARCHAR(255),
-	 FOREIGN KEY (question_id) REFERENCES questions(question_id));
+CREATE TABLE invitations (
+    invitation_id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id INT,
+    email VARCHAR(255),
+    invited BOOLEAN DEFAULT false,
+    FOREIGN KEY (question_id) REFERENCES questions(question_id)
+);
+
 
 
 
