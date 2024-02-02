@@ -25,7 +25,7 @@ try {
         //$message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
         $message .= '<br>Estoy haciendo pruebas';
         if (mail($to, $subject, $message, $headers)) {
-            registrarEvento("El correo se envió correctamente a $mail");
+            registrarEvento("El correo se envió correctamente a ".$row['email']."");
         } else {
             $lastError = error_get_last();
             $errorMessage = isset($lastError['message']) ? $lastError['message'] : 'No se pudo obtener detalles del error.';
