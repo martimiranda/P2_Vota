@@ -140,12 +140,11 @@ try {
                                                 'X-Mailer: PHP/' . phpversion() . "\r\n" .
                                                 'Content-Type: text/html; charset=UTF-8';
                                     
-                                    
                                     // Enlace de verificación
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
-                                    $message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
+                                    $message .= '<br><br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
                                     // Agregar imagen embebida (si es necesario)
-                                    $message .= '<br><img src="img/encuestas-online.png">';
+                                    $message .= '<br><img src="cid:img/encuestas-online.png">';
                                     if (mail($to, $subject, $message, $headers)) {
                                         registrarEvento("El correo se envió correctamente a $mail");
                                     } else {
