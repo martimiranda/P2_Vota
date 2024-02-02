@@ -132,7 +132,7 @@ try {
                                     
                                     //Enviar el Correo:
                                     $to = $mail;
-                                    $subject = 'VERIFICACIÓN MARGOMI';
+                                    $subject = 'VERIFICACIÓN DE CORREO';
                                     $fromName = 'MARGOMI VOTOS';
                                     $fromEmail = 'verification@margomi.com';
                                     $headers = 'From: ' . $fromName . ' <' . $fromEmail . '>' . "\r\n" .
@@ -145,7 +145,24 @@ try {
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
                                     // Agregar imagen embebida (si es necesario)
-                                    $message .= '<br><img src="img/encuestas-online.png">';
+                                    //$message .= '<br><img src="img/encuestas-online.png">';
+                                    $archivoAdjunto = 'img/encuestas-online.png';  // Reemplaza con la ruta correcta de tu imagen
+                                    $tipoContenido = mime_content_type($archivoAdjunto);
+                                    $contenidoAdjunto = base64_encode(file_get_contents($archivoAdjunto));
+                                    $nombreArchivo = basename($archivoAdjunto);
+
+                                    $message .= '<br><img src="cid:imagen_adjunta">';  // Mostrar la imagen en el cuerpo del correo
+
+                                    // Adjuntar la imagen al correo
+                                    $message .= "--PHP-mixed-$boundary\r\n";
+                                    $message .= "Content-Type: $tipoContenido; name=\"$nombreArchivo\"\r\n";
+                                    $message .= "Content-Disposition: inline; filename=\"$nombreArchivo\"\r\n";
+                                    $message .= "Content-Transfer-Encoding: base64\r\n";
+                                    $message .= "Content-ID: <imagen_adjunta>\r\n";
+                                    $message .= "\r\n";
+                                    $message .= chunk_split($contenidoAdjunto) . "\r\n";
+                                    $message .= "--PHP-mixed-$boundary--\r\n";
+
                                     if (mail($to, $subject, $message, $headers)) {
                                         registrarEvento("El correo se envió correctamente a $mail");
                                     } else {

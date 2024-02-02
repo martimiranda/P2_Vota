@@ -51,12 +51,13 @@ $_SESSION['page'] = 'logout'
                     $querystr = "UPDATE users SET token_status = TRUE WHERE token = ?";
                     $query = $pdo->prepare($querystr);
                     $query->execute([$token]);
-        
+                    
                     echo '<script>
                             setTimeout(function() {
                                 window.location.href = "login.php";
-                            }, 1000); // 1000 milliseconds (1 seconds)
+                            }, 2000); // 2000 milliseconds (2 seconds)
                         </script>';
+                        include('footer.php');
                     exit;
                 }
             } else {
@@ -68,8 +69,6 @@ $_SESSION['page'] = 'logout'
     ?>
 
 
-    <?php
-    include('footer.php');
-    ?>
+
 </body>
 </html>
