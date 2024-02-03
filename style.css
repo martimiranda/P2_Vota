@@ -383,20 +383,16 @@ footer {
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .checkbox-container {
     display: flex;
     align-items: center;
+    margin-left: 10px;  /* Ajusta el margen según sea necesario */
 }
 
 .checkbox-container2 {
-    margin-left: 10px;  /* Ajusta el margen según sea necesario */
     display: flex;
     align-items: center;
-}
-
-/* Opcional: Ajusta el margen según sea necesario */
-.checkbox-container label {
-    margin-left: 0px;
 }
