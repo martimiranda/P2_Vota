@@ -396,3 +396,10 @@ footer {
     float: left;
     align-items: center;
 }
+
+.cuadro-vcondiciones {
+    border-radius: 10px;  /* Ajusta el radio del borde según sea necesario */
+    background-color: black;  /* Cambia #yourColor por el color deseado en formato hexadecimal, RGB, o nombre del color */
+    padding: 10px;  /* Ajusta el relleno según sea necesario */
+}
+
