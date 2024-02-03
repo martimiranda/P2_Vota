@@ -25,11 +25,12 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <div class="container">
         <div id="box2">
             <form method="post">
-                <h2>Aceptación de Condiciones para la Página Web Votaieti:</h2>
-                <label for="acceptTerms">Al utilizar Votaieti, aceptas nuestra política de privacidad y seguridad. Comprometidos con tu confidencialidad, no compartimos tus datos sin consentimiento. Utiliza la plataforma de manera ética y legal, respetando derechos de propiedad intelectual. Aceptas recibir comunicaciones relacionadas con la plataforma. Nos reservamos el derecho de terminar cuentas por violaciones o actividades perjudiciales. ¡Gracias por ser parte de Votaieti!</label>
-                <br><br>
+                <h2>Aceptación de Condiciones en MARGOMI VOTOS:</h2>
+                <br>         
+                <label for="acceptTerms" style="text-align: justify;">Al utilizar MARGOMI VOTOS, estás aceptando nuestros términos de privacidad y seguridad. Nos comprometemos a salvaguardar tu confidencialidad; no compartimos tus datos sin tu consentimiento. Utiliza la plataforma de manera ética y legal, respetando los derechos de propiedad intelectual. Al aceptar, también consientes en recibir comunicaciones relacionadas con la plataforma. Nos reservamos el derecho de cerrar cuentas en caso de violaciones o actividades perjudiciales. Agradecemos tu participación en MARGOMI VOTOS.</label>
+                <br>
                 <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
-                <label for="acceptTerms">Acepto los términos y condiciones    </label>
+                <label for="acceptTerms">Acepto las condiciones</label>
                 <button type="submit">Aceptar</button>
             </form>
         </div>
