@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     ?>
     <h1 id="reg"></h1>
     <div class="container">
-        <div id="box">
+        <div id="box3">
             <form method="post">
                 <h2>Aceptación de Condiciones en MARGOMI VOTOS:</h2>
                 <br>         
