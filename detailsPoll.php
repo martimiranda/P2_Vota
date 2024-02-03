@@ -28,6 +28,31 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 </head>
 <body>
     <?php include('header.php'); ?>
+    <?php
+    try {
+        $hostname = "localhost";
+        $dbname = "p2_votos";
+        $username = "martimehdi";
+        $pw = "P@ssw0rd";
+        $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarEvento("LOGIN: Failed to get DB handle: " . $e->getMessage() . "\n");
+        exit;
+    }
+     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if(isset($_POST['QuestionVisibility']) && isset($_POST['AnswerVisibility'])){
+            $questionVisibility = $_POST['QuestionVisibility'];
+            $answerVisibility = $_POST['AnswerVisibility'];
+            $querystr = "UPDATE questions SET estadoPregunta = ?, estadoRespuesta = ? WHERE question_id = ?";
+            $query = $pdo->prepare($querystr);
+            $id = 1;
+    
+            $query->execute([$questionVisibility, $answerVisibility, $id]);
+        }
+
+    }
+    ?>
     <div class="container">
     <div id="box2">
     <?php 
@@ -127,31 +152,6 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     </form>
     </div>
     </div>
-    <?php
-    try {
-        $hostname = "localhost";
-        $dbname = "p2_votos";
-        $username = "martimehdi";
-        $pw = "P@ssw0rd";
-        $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-    } catch (PDOException $e) {
-        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarEvento("LOGIN: Failed to get DB handle: " . $e->getMessage() . "\n");
-        exit;
-    }
-     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if(isset($_POST['QuestionVisibility']) && isset($_POST['AnswerVisibility'])){
-            $questionVisibility = $_POST['QuestionVisibility'];
-            $answerVisibility = $_POST['AnswerVisibility'];
-            $querystr = "UPDATE questions SET estadoPregunta = ?, estadoRespuesta = ? WHERE question_id = ?";
-            $query = $pdo->prepare($querystr);
-            $id = 1;
-    
-            $query->execute([$questionVisibility, $answerVisibility, $id]);
-        }
-
-    }
-    ?>
 
     <?php include('footer.php'); ?>
 </body>
