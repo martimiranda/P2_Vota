@@ -51,7 +51,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '<tr style="border: 2px solid black; font-weight: bold;">';
                 echo '<td>' . $question . '</td>';
 
-                echo '<td style="text-align: center";>';
+                echo '<td>';
                     if ($row["estadoPregunta"] == "hidden") {
                         echo "<span class='visibilityPollItem'>Oculto</span>";
                     } else if ($row["estadoRespuesta"] == "public") {
@@ -61,12 +61,12 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                     }
                 echo '</td>';
                 echo '<form action="detailsPoll.php" method="POST">';
-                echo '<input style="text-align: center"; type="hidden" name="questionId" value='.$questionId.'></input>';
-                echo '<td style="text-align: center";><button style="text-align: center";>Detalles</button></td>';
+                echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
+                echo '<td><button>Detalles</button></td>';
                 echo '</form>';
                 echo '<form action="inviteVoters.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
-                echo '<td style="text-align: center";><button style="text-align: center";>Invitar</button></td>';
+                echo '<td><button>Invitar</button></td>';
                 echo '</form>';
                 echo '</tr>';
                 $row = $query->fetch();
