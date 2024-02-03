@@ -379,3 +379,13 @@ footer {
     height: 300px; 
     resize: none;
 }
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Opcional: Ajusta el margen según sea necesario */
+.checkbox-container label {
+    margin-left: 5px;
+}

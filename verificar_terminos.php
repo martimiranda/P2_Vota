@@ -29,8 +29,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 <br>         
                 <label for="acceptTerms" style="text-align: justify;">Al utilizar MARGOMI VOTOS, estás aceptando nuestros términos de privacidad y seguridad. Nos comprometemos a salvaguardar tu confidencialidad; no compartimos tus datos sin tu consentimiento. Utiliza la plataforma de manera ética y legal, respetando los derechos de propiedad intelectual. Al aceptar, también consientes en recibir comunicaciones relacionadas con la plataforma. Nos reservamos el derecho de cerrar cuentas en caso de violaciones o actividades perjudiciales. Agradecemos tu participación en MARGOMI VOTOS.</label>
                 <br>
-                <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
-                <label for="acceptTerms">Acepto las condiciones</label>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                    <label for="acceptTerms">Acepto las condiciones</label>
+                </div>
                 <br>
                 <button type="submit">Aceptar</button>
             </form>
