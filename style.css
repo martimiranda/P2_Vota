@@ -140,6 +140,16 @@ img {
     align-items: center;
 }
 
+#reg {
+    font-family: 'Roboto', sans-serif; /* Puedes cambiar 'Roboto' por la fuente que prefieras */
+    font-size: 2.5em;
+    color: #3498db; /* Puedes ajustar el color según tus preferencias */
+    text-align: center; /* Puedes ajustar la alineación según tus preferencias */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 2px; /* Aumenta el espacio entre las letras */
+    margin-bottom: 20px; /* Puedes ajustar el margen inferior según tus preferencias */
+}
+
 #box {
     margin: 20px auto;
     max-width: 300px;
