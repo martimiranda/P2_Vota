@@ -28,6 +28,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 </head>
 <body>
     <?php include('header.php'); ?>
+    <h1 id="reg">Detalles de la Encuesta</h1>
     <?php
     try {
         $hostname = "localhost";
