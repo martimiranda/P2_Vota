@@ -398,6 +398,7 @@ footer {
 }
 
 .cuadro-vcondiciones {
+    margin-top: 20px;
     border: 2px solid black;
     border-radius: 10px;
     background-color: #D9D9D9;  
