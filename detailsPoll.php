@@ -66,8 +66,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 $endDate = new DateTime($row["date_end"]);
                 echo "<h4>Fecha de fin: ".$endDate->format("d/m/Y h:i")."</h4>";
                 echo "<br>";
-                // $state = $row["date_start"];
-                // echo "<h4>Estado: ".$state."</h4>";
+
                 echo "<h4>Visibilidad de la pregunta:";
                 echo "<select id='questionVisibility'>";
                 echo "<option value='hidden' ".($row["estadoPregunta"] == "hidden" ? "selected" : "").">Oculto</option>";
@@ -88,11 +87,12 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo "
                 <div id='pollGraphs'>
                     <div id='pollGraphButtons'>
-                        <button id='barChartButton' disabled><h2>Barras</h2></button>
-                        <button id='pieChartButton'><h2>Pastel</h2></button>
+                        <button id='barChartButton' disabled>Barras</button>
+                        <button id='pieChartButton'>Pastel</button>
                     </div>
+                    <br>
                     <div id='graphContainer'>
-                        <canvas id='graph'>
+                        <canvas id='graph'  width='400px' height='200px'>
                         </canvas>
                     </div>
                 </div>
