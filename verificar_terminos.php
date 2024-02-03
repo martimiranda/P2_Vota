@@ -31,6 +31,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 <br>
                 <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
                 <label for="acceptTerms">Acepto las condiciones</label>
+                <br>
                 <button type="submit">Aceptar</button>
             </form>
         </div>
@@ -87,7 +88,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
             }
         }
     }
-
+    include('footer.php');
     ?>
 
 
