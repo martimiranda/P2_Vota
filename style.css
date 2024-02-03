@@ -398,8 +398,9 @@ footer {
 }
 
 .cuadro-vcondiciones {
+    border: 2px solid black;
     border-radius: 10px;  /* Ajusta el radio del borde según sea necesario */
-    background-color: black;  /* Cambia #yourColor por el color deseado en formato hexadecimal, RGB, o nombre del color */
+    background-color: rgb(178, 182, 142);  /* Cambia #yourColor por el color deseado en formato hexadecimal, RGB, o nombre del color */
     padding: 10px;  /* Ajusta el relleno según sea necesario */
 }
 
