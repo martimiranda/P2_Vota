@@ -25,6 +25,8 @@ CREATE TABLE questions(
 date_start DATETIME, 
 date_end DATETIME, 
 question VARCHAR(255), 
+estadoPregunta enum('public','private','hidden') DEFAULT NULL,
+estadoRespuesta enum('public','private','hidden') DEFAULT NULL,
 creator_id INT,
 FOREIGN KEY (creator_id) REFERENCES users(user_id));
 
