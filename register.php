@@ -141,14 +141,14 @@ try {
                                     
                                     // Enlace de verificación
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
-                                        $message .= "<div>
-                                        <br><br>¡Gracias por registrarte en VOTOS MARGOMI!
-                                        <br><br>
-                                        Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a>
-                                        <br><br>
-                                        <br>Gracias,
-                                        <br> MARGOMI VOTOS
-                                        <br><br>";
+                                    $message .= "<div>
+                                    <br><br>¡Gracias por registrarte en MARGOMI VOTOS!
+                                    <br><br>
+                                    Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a>
+                                    <br><br>
+                                    <br>Gracias,
+                                    <br> MARGOMI VOTOS
+                                    <br><br>";
                          
                                     if (mail($to, $subject, $message, $headers)) {
                                         registrarEvento("El correo se envió correctamente a $mail");

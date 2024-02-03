@@ -89,12 +89,20 @@ $_SESSION['page'] = 'login';
                                 </div>
                             </div>
                         </div>';
-
-                    echo '<script>
-                            setTimeout(function() {
-                                window.location.href = "dashboard.php";
-                            }, 2000); // 2000 milliseconds (2 seconds)
-                        </script>';
+                    if ($conditions_status){
+                        echo '<script>
+                                setTimeout(function() {
+                                    window.location.href = "dashboard.php";
+                                }, 2000); // 2000 milliseconds (2 seconds)
+                            </script>';
+                    } else {
+                        echo '<script>
+                                setTimeout(function() {
+                                    window.location.href = "verificar_terminos.php";
+                                }, 2000); // 2000 milliseconds (2 seconds)
+                            </script>';
+                    }
+                    
                 } else {
                     registrarEvento("ERROR LOGIN: Usuario ".$_SESSION["usuario"]. " No a validado el correo");
                     echo '<div class="error-window">
