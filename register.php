@@ -136,15 +136,13 @@ try {
                                     $fromName = 'MARGOMI VOTOS';
                                     $fromEmail = 'verification@margomi.com';
                                     $headers = 'From: ' . $fromName . ' <' . $fromEmail . '>' . "\r\n" .
-                                                'Reply-To: mregbaoui.cf@iesesteveterradas.cat' . "\r\n" .
-                                                'X-Mailer: PHP/' . phpversion() . "\r\n" .
-                                                'Content-Type: text/html; charset=UTF-8';
+                                                "X-Mailer: PHP/" . phpversion();
                                     
                                     // Enlace de verificación
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message .= '<br><br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
                                     // Agregar imagen embebida (si es necesario)
-                                    $message .= '<br><img src="cid:img/encuestas-online.png">';
+                                    $message .= '<br><img src="https://estaticos-cdn.prensaiberica.es/clip/29f66591-8ba6-41cf-92af-11367e3383d9_16-9-aspect-ratio_default_0.jpg">';
                                     if (mail($to, $subject, $message, $headers)) {
                                         registrarEvento("El correo se envió correctamente a $mail");
                                     } else {
