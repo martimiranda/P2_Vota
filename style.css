@@ -383,9 +383,10 @@ footer {
 .checkbox-container {
     display: flex;
     align-items: center;
+    width: 100px;
 }
 
 /* Opcional: Ajusta el margen según sea necesario */
 .checkbox-container label {
-    margin-left: 5px;
+    margin-left: 0px;
 }
