@@ -380,13 +380,19 @@ footer {
     resize: none;
 }
 
-.checkbox-container2 {
-    float: left;
-    align-items: center;
-    width: 20px;
+.container {
+    display: flex;
+    justify-content: center;
 }
+
 .checkbox-container {
-    float: left;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container2 {
+    margin-left: 10px;  /* Ajusta el margen según sea necesario */
+    display: flex;
     align-items: center;
 }
 
