@@ -142,24 +142,10 @@ try {
                                     // Enlace de verificación
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message .= "<div>
-                                    <br><br>¡Gracias por registrarte en VOTOS MARGOMI !
+                                    <br><br>¡Gracias por registrarte en VOTOS MARGOMI!
                                    <br><br>
-                                   Verifica tu dirección de correo electrónico y pulsa el siguiente botón para completar el registro.
+                                   Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href=' . $verificationLink . '>Verificar cuenta</a>';
                                    <br><br>
-                                   <div>
-                                   <table style='margin:0 auto' cellspacing='0' cellpadding='0' border='0' align='center'>
-                                   <tbody>
-                                   <tr>
-                                   <td style='background-color:#ec7211;font-family:AmazonEmber,arial,Helvetica,sans-serif;font-weight:normal;color:#ffffff;border:1px solid #ec7211;font-size:16px;font-weight:400;padding:16px 25px;line-height:22px;border-radius:0px;text-align:center;vertical-align:top' valign='top' bgcolor='#232F3E'>
-
-                                    <a href='. $verificationLink .' target='_blank'><span class='il'>Verificar</span> mi correo electrónico</a> 
-                                                 
-                         
-                                   </td>
-                                   </tr>
-                                   </tbody>
-                                   </table>
-                                   </div>
                                    <br>Gracias,
                                    <br> MARGOMI VOTOS
                                    <br><br>";
