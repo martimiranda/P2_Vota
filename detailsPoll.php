@@ -93,13 +93,13 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo "<h4>Fecha de fin: ".$endDate->format("d/m/Y h:i")."</h4>";
                 echo "<br>";
 
-                echo "<h4>Estado de publicación:";
+                echo "<h4>Estado de publicación:   ";
                 echo "<select id='questionVisibility'>";
                 echo "<option value='hidden' ".($row["estadoPregunta"] == "hidden" ? "selected" : "").">Oculto</option>";
                 echo "<option value='public' ".($row["estadoPregunta"] == "public" ? "selected" : "").">Público</option>";
                 echo "<option value='private' ".($row["estadoPregunta"] == "private" ? "selected" : "").">Privado</option>";
                 echo "</select></h4>";
-                echo "<h4>Estado de resultados:";
+                echo "<h4>Estado de resultados:   ";
                 echo "<select id='answerVisibility'>";
                 echo "<option value='hidden' ".($row["estadoRespuesta"] == "hidden" ? "selected" : "").">Oculto</option>";
                 echo "<option value='public' ".($row["estadoRespuesta"] == "public" ? "selected" : "").">Público</option>";
