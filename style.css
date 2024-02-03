@@ -381,12 +381,12 @@ footer {
 }
 
 .checkbox-container2 {
-    display: flex;
+    float: left;
     align-items: center;
     width: 20px;
 }
 .checkbox-container {
-    float: left;;
+    float: left;
     align-items: center;
 }
 
