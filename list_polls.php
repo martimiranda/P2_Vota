@@ -54,7 +54,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '<td>';
                     if ($row["estadoPregunta"] == "hidden") {
                         echo "<span class='visibilityPollItem'>Oculto</span>";
-                    } else if ($row["estadoRespuesta"] == "public") {
+                    } else if ($row["estadoPregunta"] == "public") {
                         echo "<span class='visibilityPollItem'>Público</span>";
                     } else {
                         echo "<span class='visibilityPollItem'>Privado</span>";
@@ -80,7 +80,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
             echo '<td>';
                     if ($row["estadoPregunta"] == "hidden") {
                         echo "<span class='visibilityPollItem'>Oculto</span>";
-                    } else if ($row["estadoRespuesta"] == "public") {
+                    } else if ($row["estadoPregunta"] == "public") {
                         echo "<span class='visibilityPollItem'>Público</span>";
                     } else {
                         echo "<span class='visibilityPollItem'>Privado</span>";
