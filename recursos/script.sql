@@ -52,10 +52,7 @@ CREATE TABLE invitations (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
     question_id INT,
     email VARCHAR(255),
-	vote_date DATETIME,
-	token VARCHAR(255) NOT NULL,
-	token_status BOOLEAN NOT NULL,
-    invited BOOLEAN DEFAULT false,
+	invited BOOLEAN DEFAULT false,
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
 );
 
