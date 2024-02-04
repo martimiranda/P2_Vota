@@ -40,8 +40,10 @@ CREATE TABLE votes(
 	vote_id INT AUTO_INCREMENT PRIMARY KEY,
 	option_id INT,
 	user_id INT,
+	question_id INT,
 	vote_date DATETIME,
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (question_id) REFERENCES questions(question_id),
 	FOREIGN KEY (option_id) REFERENCES options(option_id));
 
 CREATE TABLE invitations (
