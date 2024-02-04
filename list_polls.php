@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <?php include('header.php'); ?>
 
     <h1 id="reg">Listado de Encuestas</h1>
-    <div id="box2">
+    <div id="box3">
     <?php
     $userId = $_SESSION['user_id'];
     echo '<table id="questionTable">
