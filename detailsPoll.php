@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['page'] = 'create_poll';
+$_SESSION['page'] = 'detailsPoll';
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     http_response_code(403);
     include('errores/error403.php');
@@ -30,6 +30,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <?php include('header.php'); ?>
     <h1 id="reg">Detalles de la Encuesta</h1>
     <?php
+    include('sistemLog.php');
     try {
         $hostname = "localhost";
         $dbname = "p2_votos";
@@ -38,17 +39,16 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarEvento("LOGIN: Failed to get DB handle: " . $e->getMessage() . "\n");
+        registrarEvento("DETAILS POLL: Failed to get DB handle: " . $e->getMessage() . "\n");
         exit;
     }
      if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(isset($_POST['QuestionVisibility']) && isset($_POST['AnswerVisibility'])){
             $questionVisibility = $_POST['QuestionVisibility'];
             $answerVisibility = $_POST['AnswerVisibility'];
+            $id= $_SESSION['questionId'];
             $querystr = "UPDATE questions SET estadoPregunta = ?, estadoRespuesta = ? WHERE question_id = ?";
             $query = $pdo->prepare($querystr);
-            $id = 1;
-    
             $query->execute([$questionVisibility, $answerVisibility, $id]);
         }
 
@@ -67,7 +67,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
             } catch (PDOException $e) {
                 echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-                //registrarEvento("LOGIN: Failed to get DB handle: " . $e->getMessage() . "\n");
+                registrarEvento("DETAILS POLL: Failed to get DB handle: " . $e->getMessage() . "\n");
                 exit;
             }
             
@@ -147,6 +147,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
             echo "</script>";
         } catch (PDOException $e){
             echo $e->getMessage();
+            registrarEvento("DETAILS POLL: Failed to get DB handle: " . $e->getMessage() . "\n");
+
         }
     ?>
     <form id="hiddenForm" style="display: none" method="POST">
