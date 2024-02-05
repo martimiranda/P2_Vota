@@ -58,29 +58,31 @@ $_SESSION['page'] = 'Vote';
                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                         echo '<div id="box3">
                         <div id="voting-container">
-                        <h2 id="vote" >'.$row['question'].'</h2>
-                    
-                        <div class="options-container">
+                        <h2 id="vote" >'.$row['question'].'</h2>';
+                    }
+                    $querystr = "SELECT * FROM options WHERE question_id = :question_id";
+                    $query = $pdo->prepare($querystr);
+
+                    // Asignar el valor del parámetro
+                    $query->bindParam(':question_id', $question_id, PDO::PARAM_INT);
+
+                    // Ejecutar la consulta
+                    $query->execute();
+                    echo '<div class="options-container">';
+                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                        echo '
                         <div class="option">
-                            <input type="radio" name="vote" id="option1">
-                            <label for="option1">Opción 1</label>
-                        </div>
-                    
-                        <div class="option">
-                            <input type="radio" name="vote" id="option2">
-                            <label for="option2">Opción 2</label>
-                        </div>
-                    
-                        <div class="option">
-                            <input type="radio" name="vote" id="option3">
-                            <label for="option3">Opción 3</label>
-                        </div>
-                        </div>
+                            <input type="radio" name="vote" id='.$row['option_id'].'>
+                            <label for="'.$row['option_id'].'">'.$row['option_text'].'</label>
+                        </div>';
+                        
+                    }
+                    echo '</div>
                     
                             <button id="send-button">Enviar Votación</button>
                         </div>
                         </div>';
-                    }
+                    
                   
                 
             } else {
