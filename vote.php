@@ -96,15 +96,25 @@ $_SESSION['page'] = 'Vote';
             $date = $_POST['date'];
             $questionId = $_POST['questionId'];
             $vote = $_POST['vote'];
-            echo $date;
-            echo $questionId;
-            echo $vote;
+            echo $date." ";
+            echo $questionId." ";
+            echo $vote." ";
+            $querystr = "INSERT INTO votes (option_id, email, vote_date) VALUES (:optionId, :email, :currentDate)";
+            $query = $pdo->prepare($querystr);
+
+            // Asignar los valores a los parámetros
+            $query->bindParam(':optionId', $optionId, PDO::PARAM_INT);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
+            $query->bindParam(':currentDate', $currentDate, PDO::PARAM_STR);
+
+            // Ejecutar la consulta
+            $query->execute();
         }
 
         
 
         
-    
+        
     ?>
     
         
