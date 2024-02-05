@@ -51,13 +51,14 @@ ejemplo3@ejemplo.com"></textarea>
             try {
                 $dsn = "mysql:host=localhost;dbname=p2_votos";
                 $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
-    
+                $token = bin2hex(random_bytes(50));
                 if (!empty($options)) {
     
                     foreach ($options as $option) {
-                        $option_query = $pdo->prepare("INSERT INTO invitations (question_id, email) VALUES(:question_idd, :mail)");
+                        $option_query = $pdo->prepare("INSERT INTO invitations (question_id, email, token) VALUES(:question_idd, :mail, :token)");
                         $option_query->bindParam(':question_idd', $question_id, PDO::PARAM_INT);
                         $option_query->bindParam(':mail', $option, PDO::PARAM_STR);
+                        $option_query->bindParam(':token', $token, PDO::PARAM_STR);
                         $option_query->execute();
     
                         if ($option_query->rowCount() > 0) {
