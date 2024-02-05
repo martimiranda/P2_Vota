@@ -60,7 +60,7 @@ $_SESSION['page'] = 'Vote';
                         <div id="voting-container">
                         <h2 id="vote" >'.$row['question'].'</h2>';
                         echo '<form action="vote.php" method="post">';
-                        echo'<input type="hidden" value="'.$question_id.'" name="questionId"></input>"';
+                        echo'<input type="hidden" value="'.$question_id.'" name="questionId"></input>';
                         echo '<input type="hidden" value="'.date('Y-m-d H:i:s').'" name="date">';
                     }
                     $querystr = "SELECT * FROM options WHERE question_id = :question_id";
