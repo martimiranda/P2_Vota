@@ -23,7 +23,7 @@ try {
         $message = "<div>
         <br><br>¡Has sido invitado para participar en una encuesta de MARGOMI VOTOS!
         <br><br>
-        Vota pulsando el siguiente enlace: <a href=' '> Votar</a>
+        Vota pulsando el siguiente enlace: <a href=' ".$verificationLink." '> Votar</a>
         <br><br>
         <br>Gracias,
         <br> MARGOMI VOTOS
