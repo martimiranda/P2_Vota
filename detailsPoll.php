@@ -111,20 +111,19 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo "</div>";
 
 
-                $query = $pdo->prepare("SELECT  COUNT(*) as vote_count
+                $query = $pdo->prepare("SELECT COUNT(*) as vote_count
                        FROM votes v
                        JOIN options o ON v.option_id = o.option_id
-                       WHERE o.question_id = ?
-                       GROUP BY o.option_id;");
-                $query->bindParam(1, $id);
+                       WHERE o.question_id = ?;");
+                $query->bindParam(1, $question_id);
                 $query->execute();
                 $result = $query->fetch(PDO::FETCH_ASSOC);
 
                 if ($result) {
                     $vote_count = $result['vote_count'];
-                    echo "<h1>Votos realizados: $vote_count</h1>";
+                    echo "<h1>Votos realizados para la pregunta: $vote_count</h1>";
                 } else {
-                    echo "<h1>No hay votos para la encuesta seleccionada</h1>";
+                    echo "<h1>No hay votos para la pregunta seleccionada</h1>";
                 }
 
 
