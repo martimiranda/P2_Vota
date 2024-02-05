@@ -15,11 +15,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
     <link rel="stylesheet" href="style.css?no-cache=<?php echo time(); ?>">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="shortcut icon" href="img/vote_icon_logo.png" />
-
     <script src="https://kit.fontawesome.com/8946387bf5.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.js"></script>
@@ -88,18 +85,18 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo  "<div id='box3'>";
 
                 $startDate = new DateTime($row["date_start"]);
-                echo "<h4>Fecha de inicio: ".$startDate->format("d/m/Y h:i")."</h4>";
+                echo "<h4 style='line-height: 1.5;'>Fecha de inicio: ".$startDate->format("d/m/Y h:i")."</h4>";
                 $endDate = new DateTime($row["date_end"]);
-                echo "<h4>Fecha de fin: ".$endDate->format("d/m/Y h:i")."</h4>";
+                echo "<h4 style='line-height: 1.5;'>Fecha de fin: ".$endDate->format("d/m/Y h:i")."</h4>";
                 echo "<br>";
 
-                echo "<h4>Estado de publicación:   ";
+                echo "<h4 style='line-height: 1.5;'>Estado de publicación:   ";
                 echo "<select id='questionVisibility'>";
                 echo "<option value='hidden' ".($row["estadoPregunta"] == "hidden" ? "selected" : "").">Oculto</option>";
                 echo "<option value='public' ".($row["estadoPregunta"] == "public" ? "selected" : "").">Público</option>";
                 echo "<option value='private' ".($row["estadoPregunta"] == "private" ? "selected" : "").">Privado</option>";
                 echo "</select></h4>";
-                echo "<h4>Estado de resultados:   ";
+                echo "<h4 style='line-height: 1.5;'>Estado de resultados:   ";
                 echo "<select id='answerVisibility'>";
                 echo "<option value='hidden' ".($row["estadoRespuesta"] == "hidden" ? "selected" : "").">Oculto</option>";
                 echo "<option value='public' ".($row["estadoRespuesta"] == "public" ? "selected" : "").">Público</option>";
@@ -109,6 +106,25 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo "<button id='saveChanges'>Guardar cambios</button>";
                 echo "</div>";
                 echo "</div>";
+
+
+                $query = $pdo->prepare("SELECT COUNT(*) as vote_count
+                       FROM votes v
+                       JOIN options o ON v.option_id = o.option_id
+                       WHERE o.question_id = ?;");
+                $query->bindParam(1, $id);
+                $query->execute();
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+
+                if ($result) {
+                    $vote_count = $result['vote_count'];
+                    echo "<h3>Votos realizados para la encuesta: $vote_count</h3>";
+                } else {
+                    echo "<h3>No hay votos para la encuesta seleccionada</h3>";
+                }
+
+
+
 
                 echo "
                 <div id='pollGraphs'>
@@ -125,8 +141,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 ";
             }
 
-            $query = $pdo->prepare("SELECT a.option_id AS ID,a.option_text AS Text,
-                                    COUNT(v.vote_id) AS counter
+            $query = $pdo->prepare("SELECT a.option_id AS ID,a.option_text AS nombreVoto,
+                                    COUNT(v.vote_id) AS contador
                                     FROM options a
                                     JOIN votes v ON a.option_id = v.option_id
                                     JOIN questions q ON a.question_id = q.question_id
@@ -140,7 +156,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
             echo "getVotes([";
             
             while ($row) {
-                echo "{answer:'".$row["Text"]."', count:".$row["counter"]."},";
+                echo "{answer:'".$row["nombreVoto"]."', count:".$row["contador"]."},";
                 $row = $query->fetch();
             }
             echo "]);";
