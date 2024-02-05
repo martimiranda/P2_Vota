@@ -19,7 +19,7 @@ try {
                     'Content-Type: text/html; charset=UTF-8';
         
         // Enlace de verificación
-        $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
+        $verificationLink = 'https://aws26.ieti.site/inviteVoters.php?token=' . $token;
         $message .= "<div>
         <br><br>¡Has sido invitado para participar en una encuesta de MARGOMI VOTOS!
         <br><br>
