@@ -32,7 +32,7 @@ $_SESSION['page'] = 'Vote';
             exit;
         }
 
-        if(isset($_GET['token'])) {
+        if(isset($_GET['token']) && !isset($_POST['vote'])) {
             $token = $_GET['token'];
         
             // Buscar el token en la base de datos
@@ -59,6 +59,9 @@ $_SESSION['page'] = 'Vote';
                         echo '<div id="box3">
                         <div id="voting-container">
                         <h2 id="vote" >'.$row['question'].'</h2>';
+                        echo '<form action="vote.php" method="post">';
+                        echo'<input type="hidden" value="'.$question_id.'" name="questionId"></input>"';
+                        echo '<input type="hidden" value="'.date('Y-m-d H:i:s').'" name="date">';
                     }
                     $querystr = "SELECT * FROM options WHERE question_id = :question_id";
                     $query = $pdo->prepare($querystr);
@@ -80,6 +83,7 @@ $_SESSION['page'] = 'Vote';
                     echo '</div>
                     
                             <button id="send-button">Enviar Votación</button>
+                        </form>
                         </div>
                         </div>';
                     
@@ -88,8 +92,13 @@ $_SESSION['page'] = 'Vote';
             } else {
                 echo "Token inválido.";
             }
-        } else {
-            echo "Token no proporcionado.";
+        } elseif(isset($_POST['vote'])){
+            $date = $_POST['date'];
+            $questionId = $_POST['questionId'];
+            $vote = $_POST['vote'];
+            echo $date;
+            echo $questionId;
+            echo $vote;
         }
 
         
