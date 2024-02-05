@@ -52,13 +52,15 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '<td>' . $question . '</td>';
 
                 echo '<td>';
+
                     if ($row["estadoPregunta"] == "hidden") {
-                        echo "<span class='visibilityPollItem'>Oculto</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: yellow; color: black;'>Oculto</span>";
                     } else if ($row["estadoPregunta"] == "public") {
-                        echo "<span class='visibilityPollItem'>Público</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: green; color: black;'>Público</span>";
                     } else {
-                        echo "<span class='visibilityPollItem'>Privado</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: red; color: black;'>Privado</span>";
                     }
+                    
                 echo '</td>';
                 echo '<form action="detailsPoll.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
@@ -73,18 +75,20 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 $correct = true;
                 $use = false;
             }else{
-            $question = $row['question'];
-            $questionId = $row['question_id'];
-            echo '<tr>';
-            echo '<td>' . $question . '</td>';
-            echo '<td>';
+                $question = $row['question'];
+                $questionId = $row['question_id'];
+                echo '<tr>';
+                echo '<td>' . $question . '</td>';
+                echo '<td>';
+                    
                     if ($row["estadoPregunta"] == "hidden") {
-                        echo "<span class='visibilityPollItem'>Oculto</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: yellow; color: black;'>Oculto</span>";
                     } else if ($row["estadoPregunta"] == "public") {
-                        echo "<span class='visibilityPollItem'>Público</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: green; color: black;'>Público</span>";
                     } else {
-                        echo "<span class='visibilityPollItem'>Privado</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: red; color: black;'>Privado</span>";
                     }
+
                 echo '</td>';
                 echo '<form action="detailsPoll.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
