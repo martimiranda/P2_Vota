@@ -110,6 +110,25 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo "</div>";
                 echo "</div>";
 
+
+                $query = $pdo->prepare("SELECT COUNT(*) as vote_count
+                                    FROM votes
+                                    WHERE question_id = ?
+                                    GROUP BY option_text;");
+                $query->bindParam(1, $id);
+                $query->execute();
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+
+                if ($result) {
+                    $vote_count = $result['vote_count'];
+                    echo "<h1>Votos realizados: $vote_count</h1>";
+                } else {
+                    echo "<h1>No hay votos para la encuesta seleccionada</h1>";
+                }
+
+
+
+
                 echo "
                 <div id='pollGraphs'>
                     <div id='pollGraphButtons'>
@@ -125,8 +144,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 ";
             }
 
-            $query = $pdo->prepare("SELECT a.option_id AS ID,a.option_text AS Text,
-                                    COUNT(v.vote_id) AS counter
+            $query = $pdo->prepare("SELECT a.option_id AS ID,a.option_text AS nombreVoto,
+                                    COUNT(v.vote_id) AS contador
                                     FROM options a
                                     JOIN votes v ON a.option_id = v.option_id
                                     JOIN questions q ON a.question_id = q.question_id
@@ -140,7 +159,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
             echo "getVotes([";
             
             while ($row) {
-                echo "{answer:'".$row["Text"]."', count:".$row["counter"]."},";
+                echo "{answer:'".$row["nombreVoto"]."', count:".$row["contador"]."},";
                 $row = $query->fetch();
             }
             echo "]);";
