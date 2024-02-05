@@ -39,7 +39,7 @@ CREATE TABLE options(
 CREATE TABLE votes(
 	vote_id INT AUTO_INCREMENT PRIMARY KEY,
 	option_id INT,
-	user_id INT,
+	email VARCHAR(255),
 	vote_date DATETIME,
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (option_id) REFERENCES options(option_id));
@@ -48,6 +48,7 @@ CREATE TABLE invitations (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
     question_id INT,
     email VARCHAR(255),
+	token VARCHAR(255) NOT NULL,
 	invited BOOLEAN DEFAULT false,
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
 );
