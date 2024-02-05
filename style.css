@@ -442,7 +442,7 @@ footer {
     animation: fadeIn 0.5s ease-out;
   }
 
-  h2 {
+  h2 #vote {
     margin-bottom: 20px;
     color: #333;
   }

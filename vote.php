@@ -24,7 +24,7 @@ $_SESSION['page'] = 'Vote';
         if($anonymous == 'si'){
             echo '<div id="voteBox">
         <div id="voting-container">
-        <h2>¿Cuál es tu opción favorita?</h2>
+        <h2 id="vote" >¿Cuál es tu opción favorita?</h2>
     
         <div class="options-container">
           <div class="option">
@@ -53,7 +53,7 @@ $_SESSION['page'] = 'Vote';
     }else{
         echo '<div id="voteBox">
         <div id="anonymous-container">
-            <h2>¿Deseas que tu encuesta sea anónima?</h2>
+            <h2 id="vote">¿Deseas que tu encuesta sea anónima?</h2>
         
             <form action="vote.php" method="post">
               <div class="option">
