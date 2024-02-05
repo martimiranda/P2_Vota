@@ -6,6 +6,26 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     include('errores/error403.php');
     exit;
 } else {
+    try {
+        $hostname = "localhost";
+        $dbname = "p2_votos";
+        $username = "martimehdi";
+        $pw = "P@ssw0rd";
+        $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarEvento("LOGIN: Failed to get DB handle: " . $e->getMessage() . "\n");
+        exit;
+    }
+
+    $querystr = "SELECT * FROM users WHERE user_id=:idUser";
+    $query = $pdo->prepare($querystr);
+
+    $query->bindParam(':idUser', $_SESSION['user_id'], PDO::PARAM_INT);
+    $query->execute();
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($row["conditions_status"]) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,6 +56,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
     <?php
     include('footer.php');
+    } else {
+        echo '<script>
+            window.location.href = "verificar_terminos.php";
+        </script>';
+    }
 }
     ?>
 
