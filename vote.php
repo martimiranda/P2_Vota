@@ -1,11 +1,7 @@
 <?php 
 session_start();
 $_SESSION['page'] = 'Vote';
-if (!isset($_GET['token'])) {
-    http_response_code(403);
-    include('errores/error403.php');
-    exit;
-} else {
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -106,7 +102,7 @@ if (!isset($_GET['token'])) {
     <?php
     
     include('footer.php');
-}
+
     ?>
 
 </body>
