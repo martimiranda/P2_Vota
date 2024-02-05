@@ -20,7 +20,7 @@ try {
         
         // Enlace de verificación
         $verificationLink = 'https://aws26.ieti.site/inviteVoters.php?token=' . $token;
-        $message .= "<div>
+        $message = "<div>
         <br><br>¡Has sido invitado para participar en una encuesta de MARGOMI VOTOS!
         <br><br>
         Vota pulsando el siguiente enlace: <a href=' '> Votar</a>
@@ -30,11 +30,11 @@ try {
         <br><br>";
 
         if (mail($to, $subject, $message, $headers)) {
-            registrarEvento("El correo se envió correctamente a $mail");
+            registrarEvento("El correo se envió correctamente a ".$row['email']);
         } else {
             $lastError = error_get_last();
             $errorMessage = isset($lastError['message']) ? $lastError['message'] : 'No se pudo obtener detalles del error.';
-            registrarEvento("Error al enviar el correo a $mail. Detalles del error: $errorMessage");
+            registrarEvento("Error al enviar el correo a ".$row['email']." Detalles del error: $errorMessage");
         }
         $row = $query->fetch();
         $correct = true;}
