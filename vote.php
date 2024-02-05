@@ -56,7 +56,7 @@ $_SESSION['page'] = 'Vote';
                     // Ejecutar la consulta
                     $query->execute();
                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<div id="box3">
+                        echo '<div id="box2">
                         <div id="voting-container">
                         <h2 id="vote" >'.$row['question'].'</h2>';
                         echo '<form action="vote.php" method="post">';
