@@ -64,11 +64,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '</td>';
                 echo '<form action="detailsPoll.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
-                echo '<td><button style="background-color: rgb(159, 159, 159);">Detalles</button></td>';
+                echo '<td><button >Detalles</button></td>';
                 echo '</form>';
                 echo '<form action="inviteVoters.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
-                echo '<td><button style="background-color: rgb(159, 159, 159);">Invitar</button></td>';
+                echo '<td><button >Invitar</button></td>';
                 echo '</form>';
                 echo '</tr>';
                 $row = $query->fetch();
@@ -92,11 +92,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '</td>';
                 echo '<form action="detailsPoll.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
-                echo '<td><button style="background-color: rgb(159, 159, 159);">Detalles</button></td>';
+                echo '<td><button >Detalles</button></td>';
                 echo '</form>';
                 echo '<form action="inviteVoters.php" method="POST">';
                 echo '<input type="hidden" name="questionId" value='.$questionId.'></input>';
-                echo '<td><button style="background-color: rgb(159, 159, 159);">Invitar</button></td>';
+                echo '<td><button >Invitar</button></td>';
                 echo '</form>';
             echo '</tr>';
             $row = $query->fetch();
