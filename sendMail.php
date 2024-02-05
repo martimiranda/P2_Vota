@@ -9,7 +9,7 @@ try {
     $correct = false;
     $use= true;
     while ($row) {
-
+        $token = $row['token'];
         $to = $row['email'];
         $subject = 'INVITACIÓN A VOTO';
         $fromName = 'MARGOMI VOTOS';
