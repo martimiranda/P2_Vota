@@ -431,3 +431,19 @@ footer {
     padding: 10px;  
 }
 
+.visibilityPollItem {
+    color: black; /* Texto en color negro para todas las clases */
+    padding: 5px; /* Espaciado interno para mejor apariencia */
+}
+
+.hidden {
+    background-color: red; /* Fondo rojo para estado 'hidden' */
+}
+
+.public {
+    background-color: green; /* Fondo verde para estado 'public' */
+}
+
+.private {
+    background-color: yellow; /* Fondo amarillo para estado 'private' */
+}
