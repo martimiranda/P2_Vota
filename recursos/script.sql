@@ -41,7 +41,6 @@ CREATE TABLE votes(
 	option_id INT,
 	email VARCHAR(255),
 	vote_date DATETIME,
-	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (option_id) REFERENCES options(option_id));
 
 CREATE TABLE invitations (
