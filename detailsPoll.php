@@ -111,9 +111,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo "</div>";
 
 
-                $query = $pdo->prepare("SELECT COUNT(*) as vote_count
-                                    FROM options
-                                    WHERE question_id = ?;");
+                $query = $pdo->prepare("SELECT option_id, COUNT(*) as vote_count
+                       FROM votes
+                       WHERE option_id IN (SELECT option_id FROM options WHERE question_id = ?)
+                       GROUP BY option_id;");
                 $query->bindParam(1, $id);
                 $query->execute();
                 $result = $query->fetch(PDO::FETCH_ASSOC);
