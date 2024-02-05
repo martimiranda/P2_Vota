@@ -25,7 +25,7 @@ if ($_SESSION['page'] == 'register' || $_SESSION['page'] == 'login') {
 ?>
 
 <?php
-if ($_SESSION['page'] == 'index' ) {
+if ($_SESSION['page'] == 'index') {
     ?>
     <header>
     <h1>MARGOMI VOTOS</h1>
@@ -37,6 +37,17 @@ if ($_SESSION['page'] == 'index' ) {
 <?php
 }    
 ?>
+
+<?php
+if ($_SESSION['page'] == 'Vote') {
+    ?>
+    <header>
+    <h1>MARGOMI VOTOS</h1>
+</header>
+<?php
+}    
+?>
+
 
 <?php
 if ($_SESSION['page'] == 'dashboard') {

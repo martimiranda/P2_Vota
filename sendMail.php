@@ -9,27 +9,32 @@ try {
     $correct = false;
     $use= true;
     while ($row) {
+
         $to = $row['email'];
-        $subject = 'INVITACIÓN DE MARGOMI';
-        $message = '';
-        $headers = 'From: invitations@margomi.com' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion() . "\r\n" .
+        $subject = 'INVITACIÓN A VOTO';
+        $fromName = 'MARGOMI VOTOS';
+        $fromEmail = 'invitations@margomi.com';
+        $headers = 'From: ' . $fromName . ' <' . $fromEmail . '>' . "\r\n" .
+                    "X-Mailer: PHP/" . phpversion() . "\r\n" .
                     'Content-Type: text/html; charset=UTF-8';
-
-
-        // Agregar imagen embebida (si es necesario)
-        $message .= '<br><img src="img/encuestas-online.png">';
-
+        
         // Enlace de verificación
-        //$verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
-        //$message .= '<br>Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: <a href="' . $verificationLink . '">Verificar cuenta</a>';
-        $message .= '<br>Estoy haciendo pruebas';
+        $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
+        $message .= "<div>
+        <br><br>¡Has sido invitado para participar en una encuesta de MARGOMI VOTOS!
+        <br><br>
+        Vota pulsando el siguiente enlace: <a href=' '> Votar</a>
+        <br><br>
+        <br>Gracias,
+        <br> MARGOMI VOTOS
+        <br><br>";
+
         if (mail($to, $subject, $message, $headers)) {
-            registrarEvento("El correo se envió correctamente a ".$row['email']."");
+            registrarEvento("El correo se envió correctamente a $mail");
         } else {
             $lastError = error_get_last();
             $errorMessage = isset($lastError['message']) ? $lastError['message'] : 'No se pudo obtener detalles del error.';
-            registrarEvento("Error al enviar el correo a ".$row['email'].";. Detalles del error: $errorMessage");
+            registrarEvento("Error al enviar el correo a $mail. Detalles del error: $errorMessage");
         }
         $row = $query->fetch();
         $correct = true;}
