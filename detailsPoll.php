@@ -115,7 +115,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                        FROM votes v
                        JOIN options o ON v.option_id = o.option_id
                        WHERE o.question_id = ?;");
-                $query->bindParam(1, $question_id);
+                $query->bindParam(1, $id);
                 $query->execute();
                 $result = $query->fetch(PDO::FETCH_ASSOC);
 
