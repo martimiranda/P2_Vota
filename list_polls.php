@@ -54,9 +54,9 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '<td>';
 
                     if ($row["estadoPregunta"] == "hidden") {
-                        echo "<span class='visibilityPollItem' style='background-color: yellow; color: black;'>Oculto</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: rgba(255, 255, 0, 0.644);; color: black;'>Oculto</span>";
                     } else if ($row["estadoPregunta"] == "public") {
-                        echo "<span class='visibilityPollItem' style='background-color: green; color: black;'>Público</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: rgba(41, 182, 41, 0.852); color: black;'>Público</span>";
                     } else {
                         echo "<span class='visibilityPollItem' style='background-color: red; color: black;'>Privado</span>";
                     }
@@ -82,11 +82,11 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 echo '<td>';
                     
                     if ($row["estadoPregunta"] == "hidden") {
-                        echo "<span class='visibilityPollItem' style='background-color: yellow; color: black;'>Oculto</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: rgba(255, 255, 0, 0.644); color: black;'>Oculto</span>";
                     } else if ($row["estadoPregunta"] == "public") {
-                        echo "<span class='visibilityPollItem' style='background-color: green; color: black;'>Público</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: rgba(41, 182, 41, 0.852); color: black;'>Público</span>";
                     } else {
-                        echo "<span class='visibilityPollItem' style='background-color: red; color: black;'>Privado</span>";
+                        echo "<span class='visibilityPollItem' style='background-color: rgb(228, 98, 98); color: black;'>Privado</span>";
                     }
 
                 echo '</td>';
