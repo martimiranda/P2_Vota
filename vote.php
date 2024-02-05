@@ -75,7 +75,7 @@ $_SESSION['page'] = 'Vote';
                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                         echo '
                         <div class="option">
-                            <input type="radio" name="vote" id='.$row['option_id'].'>
+                            <input type="radio" name="vote" id='.$row['option_id'].' value="'.$row['option_id'].'">
                             <label for="'.$row['option_id'].'">'.$row['option_text'].'</label>
                         </div>';
                         
