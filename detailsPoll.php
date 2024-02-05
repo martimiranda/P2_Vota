@@ -121,9 +121,9 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
                 if ($result) {
                     $vote_count = $result['vote_count'];
-                    echo "<h1>Votos realizados para la encuesta: $vote_count</h1>";
+                    echo "<h3>Votos realizados para la encuesta: $vote_count</h3>";
                 } else {
-                    echo "<h1>No hay votos para la encuesta seleccionada</h1>";
+                    echo "<h3>No hay votos para la encuesta seleccionada</h3>";
                 }
 
 
