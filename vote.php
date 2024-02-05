@@ -1,7 +1,11 @@
 <?php 
 session_start();
 $_SESSION['page'] = 'Vote';
-
+if (!isset($_GET['token'])) {
+    http_response_code(403);
+    include('errores/error403.php');
+    exit;
+} else {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,58 +23,81 @@ $_SESSION['page'] = 'Vote';
     <?php
     include('header.php');
 
-    if(isset($_POST['anonymous'])){
-        $anonymous = $_POST['anonymous'];
-        if($anonymous == 'si'){
-            echo '<div id="voteBox">
-        <div id="voting-container">
-        <h2 id="vote" >¿Cuál es tu opción favorita?</h2>
-    
-        <div class="options-container">
-          <div class="option">
-            <input type="radio" name="vote" id="option1">
-            <label for="option1">Opción 1</label>
-          </div>
-    
-          <div class="option">
-            <input type="radio" name="vote" id="option2">
-            <label for="option2">Opción 2</label>
-          </div>
-    
-          <div class="option">
-            <input type="radio" name="vote" id="option3">
-            <label for="option3">Opción 3</label>
-          </div>
-        </div>
-    
-            <button id="send-button">Enviar Votación</button>
-        </div>
-        </div>';
-        } else{
-
+        $token = $_GET['token'];
+        try {
+            $hostname = "localhost";
+            $dbname = "p2_votos";
+            $username = "martimehdi";
+            $pw = "P@ssw0rd";
+            $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarEvento("LOGIN: Failed to get DB handle: " . $e->getMessage() . "\n");
+            exit;
         }
+
+        if(isset($_GET['token'])) {
+            $token = $_GET['token'];
         
-    }else{
-        echo '<div id="voteBox">
-        <div id="anonymous-container">
-            <h2 id="vote">¿Deseas que tu encuesta sea anónima?</h2>
+            // Buscar el token en la base de datos
+            $querystr = "SELECT * FROM invitations WHERE token = ?";
+            $query = $pdo->prepare($querystr);
+            $query->execute([$token]);
+            if ($query->rowCount() > 0) {
+                $invitation = $query->fetch();
+                $question_id = $invitation['question_id'];
+
         
-            <form action="vote.php" method="post">
-              <div class="option">
-                <input type="radio" name="anonymous" id="yes" value="si">
-                <label for="yes">Sí, quiero que sea anónima</label>
-              </div>
+                // Verificar si el token ya ha sido aceptado
+               
+                    // Marcar el token como aceptado
+                    $querystr = "SELECT * FROM questions WHERE question_id = :question_id";
+                    $query = $pdo->prepare($querystr);
+
+                    // Asignar el valor del parámetro
+                    $query->bindParam(':question_id', $question_id, PDO::PARAM_INT);
+
+                    // Ejecutar la consulta
+                    $query->execute();
+                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<div id="voteBox">
+                        <div id="voting-container">
+                        <h2 id="vote" >'.$row['question'].'</h2>
+                    
+                        <div class="options-container">
+                        <div class="option">
+                            <input type="radio" name="vote" id="option1">
+                            <label for="option1">Opción 1</label>
+                        </div>
+                    
+                        <div class="option">
+                            <input type="radio" name="vote" id="option2">
+                            <label for="option2">Opción 2</label>
+                        </div>
+                    
+                        <div class="option">
+                            <input type="radio" name="vote" id="option3">
+                            <label for="option3">Opción 3</label>
+                        </div>
+                        </div>
+                    
+                            <button id="send-button">Enviar Votación</button>
+                        </div>
+                        </div>';
+                    }
+                  
+                
+            } else {
+                echo "Token inválido.";
+            }
+        } else {
+            echo "Token no proporcionado.";
+        }
+
         
-              <div class="option">
-                <input type="radio" name="anonymous" id="no" value="no">
-                <label for="no">No, quiero que sea pública</label>
-              </div>
+
         
-              <button type="submit" id="send-button">Enviar Opción</button>
-            </form>
-          </div>
-</div>';
-    }
+    
     ?>
     
         
@@ -79,7 +106,7 @@ $_SESSION['page'] = 'Vote';
     <?php
     
     include('footer.php');
-
+}
     ?>
 
 </body>
