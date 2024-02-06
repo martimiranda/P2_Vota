@@ -18,6 +18,10 @@ $_SESSION['page'] = 'register'
 </head>
 <body>
     <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    require "vendor/autoload.php";
+
     include('header.php');
     ?>
     <h1 id="reg">Pagina de Registro</h1>
@@ -132,32 +136,39 @@ try {
                                     
                                     //Enviar el Correo:
                                     $to = $mail;
-                                    $subject = 'VERIFICACIÓN DE CORREO';
-                                    $fromName = 'MARGOMI VOTOS';
-                                    $fromEmail = 'verification@margomi.com';
-                                    $headers = 'From: ' . $fromName . ' <' . $fromEmail . '>' . "\r\n" .
-                                                "X-Mailer: PHP/" . phpversion() . "\r\n" .
-                                                'Content-Type: text/html; charset=UTF-8';
+                                    // Crear instancia de PHPMailer
+                                    $mail = new PHPMailer();
                                     
-                                    // Enlace de verificación
+                                    // Configurar SMTP
+                                    $mail->IsSMTP();
+                                    $mail->SMTPDebug  = 1;  // Activa el debug para ver errores
+                                    $mail->SMTPAuth   = TRUE;
+                                    $mail->SMTPSecure = "tls";
+                                    $mail->Port       = 587;
+                                    $mail->Host       = "smtp.gmail.com"; // SMTP server
+                                    $mail->Username   = "mregbaoui.cf@iesesteveterradas.cat"; // SMTP username
+                                    $mail->Password   = "PassMehdiSprint3"; // SMTP password
+                                    
+                                    // Configurar cabeceras del correo
+                                    $mail->IsHTML(true);
+                                    $mail->SetFrom("verification@margomi.com", "MARGOMI VOTOS");
+                                    $mail->AddAddress($to); // Añadir destinatario
+                                    $mail->Subject = 'VERIFICACIÓN DE CORREO';
+                                    
+                                    // Construir el mensaje
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
-                                    $message .= "<div>
-                                    <br><br>¡Gracias por registrarte en MARGOMI VOTOS!
-                                    <br><br>
-                                    Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a>
-                                    <br><br>
-                                    <br>Gracias,
-                                    <br> MARGOMI VOTOS
-                                    <br><br>";
-                         
-                                    if (mail($to, $subject, $message, $headers)) {
-                                        registrarEvento("El correo se envió correctamente a $mail");
+                                    $message = "<div><br>¡Gracias por registrarte en MARGOMI VOTOS!<br><br>";
+                                    $message .= "Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a><br><br>";
+                                    $message .= "<br>Saludos.<br> MARGOMI VOTOS <br><br>";
+                                    $message .= "<img src='img/encuestas-online.png' alt='Imagen de ejemplo'>"; // Agregar la imagen
+                                    $mail->MsgHTML($message);
+
+                                    if (!$mail->Send()) {
+                                        registrarEvento("Error al enviar el correo a $to.");
                                     } else {
-                                        $lastError = error_get_last();
-                                        $errorMessage = isset($lastError['message']) ? $lastError['message'] : 'No se pudo obtener detalles del error.';
-                                        registrarEvento("Error al enviar el correo a $mail. Detalles del error: $errorMessage");
+                                        registrarEvento("El correo se envió correctamente a $to");
                                     }
-                                    
+
                                     
                                 }
                         } catch (PDOException $e){
