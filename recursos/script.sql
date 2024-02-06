@@ -48,6 +48,7 @@ CREATE TABLE invitations (
     question_id INT,
     email VARCHAR(255),
 	token VARCHAR(255) NOT NULL,
+	token_status BOOLEAN DEFAULT true,
 	invited BOOLEAN DEFAULT false,
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
 );
