@@ -171,11 +171,23 @@ $_SESSION['page'] = 'Vote';
         }  
     ?>
     
-        
+    
 
 
     <?php
     
+    if(!isset($_GET['token']) && !isset($_POST['vote'])) {
+        registrarEvento("VOTOS ERROR: Inteto de realizar un voto de nuevo!!");
+                    echo '<div id="account_created" class="container">
+                    <div id="box">
+                        <form action="index.php" method="POST">
+                            <h4>Error, el voto ya a sido efectuado!!</h4>
+                            <button class="accept-button" type="submit">Aceptar</button>
+                        </form>
+                    </div>
+                </div>';
+    }
+
     include('footer.php');
 
     ?>
