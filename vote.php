@@ -35,6 +35,7 @@ $_SESSION['page'] = 'Vote';
         }
 
         if(isset($_GET['token']) && !isset($_POST['vote'])) {
+            $_SESSION['available'] = true;
             $token = $_GET['token'];
             $_SESSION['token'] = $token;
             $_SESSION['token_status'] = $token_status;
@@ -47,7 +48,6 @@ $_SESSION['page'] = 'Vote';
                 $question_id = $invitation['question_id'];
                 $email = $invitation['email'];
       
-
                 if($invitation['token_status']){
 
                 // Verificar si el token ya ha sido aceptado
@@ -117,7 +117,8 @@ $_SESSION['page'] = 'Vote';
                 exit;
             }
         } elseif(isset($_POST['vote'])){
-            if($_SESSION['token_status']){
+
+            if($_SESSION['available']){
 
                 $date = $_POST['date'];
                 $email = $_POST['email'];
@@ -141,7 +142,7 @@ $_SESSION['page'] = 'Vote';
                 $updateQuery = $pdo->prepare("UPDATE invitations SET token_status = FALSE WHERE token = :token");
                 $updateQuery->bindParam(':token', $token);
                 $updateQuery->execute();
-
+                $_SESSION['available'] = false;
                 registrarEvento("VOTOS CONFIRMADO: Voto realizado correctamente!");
                 echo '<div id="account_created" class="container">
                         <div id="box">
@@ -152,21 +153,10 @@ $_SESSION['page'] = 'Vote';
                             </form>
                         </div>
                     </div>';
-                    $_SESSION['token_status'] = 0;
                     include('footer.php');
                     exit;   
             } else {
-                registrarEvento("VOTOS ERROR: Inteto de realizar un voto de nuevo!!");
-                    echo '<div id="account_created" class="container">
-                    <div id="box">
-                        <form action="index.php" method="POST">
-                            <h4>Error, el voto ya a sido efectuado!!</h4>
-                            <button class="accept-button" type="submit">Aceptar</button>
-                        </form>
-                    </div>
-                </div>';
-                include('footer.php');
-                exit;
+                
             }   
         }  
     ?>
