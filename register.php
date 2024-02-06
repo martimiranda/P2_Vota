@@ -153,14 +153,14 @@ try {
                                     $mail->IsHTML(true);
                                     $mail->SetFrom("verification@margomi.com", "MARGOMI VOTOS");
                                     $mail->AddAddress($to, $user); // Añadir destinatario
-                                    $mail->Subject = 'VERIFICACIÓN DE CORREO';
+                                    $mail->Subject = 'VERIFICACION DE CORREO';
                                     
                                     // Construir el mensaje
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message = "<div><br>¡Gracias por registrarte en MARGOMI VOTOS!<br><br>";
                                     $message .= "Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a><br><br>";
                                     $message .= "Saludos.<br><br> MARGOMI VOTOS <br><br>";
-                                    $message .= "<img src='cid:img/encuestas-online.png'>"; // Agregar la imagen
+                                    $message .= "<img src='https://media.istockphoto.com/id/1038070776/it/vettoriale/icona-del-colore-del-voto-vettoriale-con-la-busta-dellinserto-a-mano-dellelettore-nelle.jpg?s=612x612&w=0&k=20&c=rUwkFns-OCnwyaQ72-e__cqek9q75w-BYE6AWyyguho=' alt='Imagen de ejemplo'>"; // Agregar la imagen
                                     $mail->MsgHTML($message);
 
                                     if (!$mail->Send()) {
