@@ -141,7 +141,7 @@ try {
                                     
                                     // Configurar SMTP
                                     $mail->IsSMTP();
-                                    $mail->SMTPDebug  = 1;  // Activa el debug para ver errores
+                                    $mail->SMTPDebug  = 0;  // Activa el debug para ver errores
                                     $mail->SMTPAuth   = TRUE;
                                     $mail->SMTPSecure = "tls";
                                     $mail->Port       = 587;
@@ -152,15 +152,15 @@ try {
                                     // Configurar cabeceras del correo
                                     $mail->IsHTML(true);
                                     $mail->SetFrom("verification@margomi.com", "MARGOMI VOTOS");
-                                    $mail->AddAddress($to); // Añadir destinatario
+                                    $mail->AddAddress($to, $user); // Añadir destinatario
                                     $mail->Subject = 'VERIFICACIÓN DE CORREO';
                                     
                                     // Construir el mensaje
                                     $verificationLink = 'https://aws26.ieti.site/verificar_token.php?token=' . $token;
                                     $message = "<div><br>¡Gracias por registrarte en MARGOMI VOTOS!<br><br>";
                                     $message .= "Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a><br><br>";
-                                    $message .= "<br>Saludos.<br> MARGOMI VOTOS <br><br>";
-                                    $message .= "<img src='img/encuestas-online.png' alt='Imagen de ejemplo'>"; // Agregar la imagen
+                                    $message .= "Saludos.<br><br> MARGOMI VOTOS <br><br>";
+                                    $message .= "<img src='cid:img/encuestas-online.png'>"; // Agregar la imagen
                                     $mail->MsgHTML($message);
 
                                     if (!$mail->Send()) {
