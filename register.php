@@ -102,6 +102,7 @@ try {
                     <div id="box">
                         <form action="index.php" method="POST">
                             <h4>Cuenta creada correctamente!!</h4>
+                            <h5>Verifica tu correo electrónico para confirmar el registro...</h5>
                             <button class="accept-button" type="submit">Aceptar</button>
                         </form>
                     </div>

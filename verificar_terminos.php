@@ -65,7 +65,6 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                     
 
 
-                    include('footer.php');
                     echo '<div class="error-window">
                             <div class="title-bar">
                                 <div class="close-button"></div>
