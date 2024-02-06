@@ -146,9 +146,10 @@ try {
                                     $mail->SMTPSecure = "tls";
                                     $mail->Port       = 587;
                                     $mail->Host       = "smtp.gmail.com"; // SMTP server
-                                    $mail->Username   = "mregbaoui.cf@iesesteveterradas.cat"; // SMTP username
-                                    $mail->Password   = "PassMehdiSprint3"; // SMTP password
-                                    
+                                    $config = include 'config.php';
+                                    $mail->Username = $email;
+                                    $mail->Password = $password;
+                    
                                     // Configurar cabeceras del correo
                                     $mail->IsHTML(true);
                                     $mail->SetFrom("verification@margomi.com", "MARGOMI VOTOS");
@@ -160,7 +161,7 @@ try {
                                     $message = "<div><br>¡Gracias por registrarte en MARGOMI VOTOS!<br><br>";
                                     $message .= "Verifica tu dirección de correo electrónico pulsando el siguiente enlace: <a href='" . $verificationLink . "'>Verificar cuenta</a><br><br>";
                                     $message .= "Saludos.<br><br> MARGOMI VOTOS <br><br>";
-                                    $message .= "<img src='https://media.istockphoto.com/id/1038070776/it/vettoriale/icona-del-colore-del-voto-vettoriale-con-la-busta-dellinserto-a-mano-dellelettore-nelle.jpg?s=612x612&w=0&k=20&c=rUwkFns-OCnwyaQ72-e__cqek9q75w-BYE6AWyyguho=' alt='Imagen de ejemplo'>"; // Agregar la imagen
+                                    $message .= "<img style='width: 200px;' src='https://media.istockphoto.com/id/1038070776/it/vettoriale/icona-del-colore-del-voto-vettoriale-con-la-busta-dellinserto-a-mano-dellelettore-nelle.jpg?s=612x612&w=0&k=20&c=rUwkFns-OCnwyaQ72-e__cqek9q75w-BYE6AWyyguho=' alt='Imagen de ejemplo'>"; // Agregar la imagen
                                     $mail->MsgHTML($message);
 
                                     if (!$mail->Send()) {
