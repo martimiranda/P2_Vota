@@ -17,6 +17,7 @@ $_SESSION['page'] = 'Vote';
 </head>
 <body>
     <?php
+    session_start();
     include('header.php');
 
         $token = $_GET['token'];
@@ -34,7 +35,7 @@ $_SESSION['page'] = 'Vote';
 
         if(isset($_GET['token']) && !isset($_POST['vote'])) {
             $token = $_GET['token'];
-        
+            $_SESSION['token'] = $token;
             // Buscar el token en la base de datos
             $querystr = "SELECT * FROM invitations WHERE token = ?";
             $query = $pdo->prepare($querystr);
@@ -43,8 +44,9 @@ $_SESSION['page'] = 'Vote';
                 $invitation = $query->fetch();
                 $question_id = $invitation['question_id'];
                 $email = $invitation['email'];
+      
 
-        
+                if($invitation['token_status']){
                 // Verificar si el token ya ha sido aceptado
                
                     // Marcar el token como aceptado
@@ -62,6 +64,7 @@ $_SESSION['page'] = 'Vote';
                         <h2 id="vote" >'.$row['question'].'</h2>';
                         echo '<form action="vote.php" method="post">';
                         echo'<input type="hidden" value="'.$question_id.'" name="questionId"></input>';
+                        echo'<input type="hidden" value="'.$email.'" name="email"></input>';
                         echo '<input type="hidden" value="'.date('Y-m-d H:i:s').'" name="date">';
                     }
                     $querystr = "SELECT * FROM options WHERE question_id = :question_id";
@@ -87,15 +90,19 @@ $_SESSION['page'] = 'Vote';
                         </form>
                         </div>
                         </div>';
+                }else{
+                    echo "token ya usado";
+
+                }
                     
-                  
+                //
                 
             } else {
                 echo "Token inválido.";
             }
         } elseif(isset($_POST['vote'])){
             $date = $_POST['date'];
-            $questionId = $_POST['questionId'];
+            $email = $_POST['email'];
             $vote = $_POST['vote'];
             echo $date." ";
             echo $email." ";
@@ -110,6 +117,13 @@ $_SESSION['page'] = 'Vote';
 
             // Ejecutar la consulta
             $query->execute();
+
+            $token = $_SESSION['token'];
+            echo $token;
+            $updateQuery = $pdo->prepare("UPDATE invitations SET token_status = FALSE WHERE token = :token");
+            $updateQuery->bindParam(':token', $token);
+            $updateQuery->execute();
+
         }
 
         
