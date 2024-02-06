@@ -146,7 +146,7 @@ try {
                                     $mail->SMTPSecure = "tls";
                                     $mail->Port       = 587;
                                     $mail->Host       = "smtp.gmail.com"; // SMTP server
-                                    $config = include 'config.php';
+                                    include 'config.php';
                                     $mail->Username = $email;
                                     $mail->Password = $password;
                     
