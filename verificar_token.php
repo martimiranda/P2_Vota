@@ -70,10 +70,14 @@ $_SESSION['page'] = 'logout'
                     exit;
                 }
             } else {
-                echo "Token inválido.";
+                // Redirigir al usuario a la página de error 404
+                header("Location: errores/error404.php");
+                exit;
             }
         } else {
-            echo "Token no proporcionado.";
+            // Redirigir al usuario a la página de error 404
+            header("Location: errores/error404.php");
+            exit;
         }
     ?>
 

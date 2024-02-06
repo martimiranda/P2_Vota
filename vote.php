@@ -19,6 +19,7 @@ $_SESSION['page'] = 'Vote';
     <?php
     session_start();
     include('header.php');
+    include('sistemLog.php');
 
         $token = $_GET['token'];
         try {
@@ -36,6 +37,7 @@ $_SESSION['page'] = 'Vote';
         if(isset($_GET['token']) && !isset($_POST['vote'])) {
             $token = $_GET['token'];
             $_SESSION['token'] = $token;
+            $_SESSION['token_status'] = $token_status;
             // Buscar el token en la base de datos
             $querystr = "SELECT * FROM invitations WHERE token = ?";
             $query = $pdo->prepare($querystr);
@@ -47,6 +49,7 @@ $_SESSION['page'] = 'Vote';
       
 
                 if($invitation['token_status']){
+
                 // Verificar si el token ya ha sido aceptado
                
                     // Marcar el token como aceptado
@@ -91,45 +94,66 @@ $_SESSION['page'] = 'Vote';
                         </div>
                         </div>';
                 }else{
-                    echo "token ya usado";
-
+                    registrarEvento("VOTOS ERROR: Inteto de realizar un voto de nuevo!!");
+                    echo '<div id="account_created" class="container">
+                    <div id="box">
+                        <form action="index.php" method="POST">
+                            <h4>Error, el voto ya a sido efectuado!!</h4>
+                            <button class="accept-button" type="submit">Aceptar</button>
+                        </form>
+                    </div>
+                </div>';
+                include('footer.php');
+                exit;
                 }
                     
                 //
                 
             } else {
-                echo "Token inválido.";
+                registrarEvento("VOTOS ERROR: Un token inexistente!!");
+                header("Location: errores/error404.php");
+                include('footer.php');
+
+                exit;
             }
         } elseif(isset($_POST['vote'])){
-            $date = $_POST['date'];
-            $email = $_POST['email'];
-            $vote = $_POST['vote'];
-            echo $date." ";
-            echo $email." ";
-            echo $vote." ";
-            $querystr = "INSERT INTO votes (option_id, email, vote_date) VALUES (:optionId, :email, :currentDate)";
-            $query = $pdo->prepare($querystr);
 
-            // Asignar los valores a los parámetros
-            $query->bindParam(':optionId', $vote, PDO::PARAM_INT);
-            $query->bindParam(':email', $email, PDO::PARAM_STR);
-            $query->bindParam(':currentDate', $date, PDO::PARAM_STR);
+                $date = $_POST['date'];
+                $email = $_POST['email'];
+                $vote = $_POST['vote'];
+                // echo $date." ";
+                // echo $email." ";
+                // echo $vote." ";
+                $querystr = "INSERT INTO votes (option_id, email, vote_date) VALUES (:optionId, :email, :currentDate)";
+                $query = $pdo->prepare($querystr);
 
-            // Ejecutar la consulta
-            $query->execute();
+                // Asignar los valores a los parámetros
+                $query->bindParam(':optionId', $vote, PDO::PARAM_INT);
+                $query->bindParam(':email', $email, PDO::PARAM_STR);
+                $query->bindParam(':currentDate', $date, PDO::PARAM_STR);
 
-            $token = $_SESSION['token'];
-            echo $token;
-            $updateQuery = $pdo->prepare("UPDATE invitations SET token_status = FALSE WHERE token = :token");
-            $updateQuery->bindParam(':token', $token);
-            $updateQuery->execute();
+                // Ejecutar la consulta
+                $query->execute();
 
-        }
+                $token = $_SESSION['token'];
+                // echo $token;
+                $updateQuery = $pdo->prepare("UPDATE invitations SET token_status = FALSE WHERE token = :token");
+                $updateQuery->bindParam(':token', $token);
+                $updateQuery->execute();
 
-        
-
-        
-        
+                registrarEvento("VOTOS CONFIRMADO: Voto realizado correctamente!");
+                echo '<div id="account_created" class="container">
+                        <div id="box">
+                            <form action="index.php" method="POST">
+                            <h3>Voto realizado correctamente!!</h3>
+                            <h4>¡Gracias por tu voto!</h4>
+                            <button class="accept-button" type="submit">Aceptar</button>
+                            </form>
+                        </div>
+                    </div>';
+                    include('footer.php');
+                    exit;      
+        }  
     ?>
     
         
