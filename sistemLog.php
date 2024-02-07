@@ -1,5 +1,5 @@
 <?php
-$logDirectory = "sistemErrorLogs/";
+$logDirectory = "/var/www/html/P2_Vota/sistemErrorLogs/";
 $archivoLog = $logDirectory . "log_" . date("Y-m-d") . ".txt";
 date_default_timezone_set('Europe/Madrid');
 function registrarEvento($mensaje) {
