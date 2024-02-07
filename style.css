@@ -128,6 +128,21 @@ img {
     transition-duration: 1s;
 }
 
+.button3{
+    display: inline-block;
+padding: 10px 15px;
+margin: 4px;
+background-color: #333;
+border: 2px solid #686565;
+text-decoration: none;
+border-radius: 20px;
+font-weight: bold;
+font-size: 10px;
+color: #fff;
+font-family: 'Lora', sans-serif;
+transition-duration: 1s;
+}
+
 .button:hover:hover{
     transition-duration: 1s;
     background-color: #686565;
@@ -522,3 +537,11 @@ footer {
     overflow: hidden;
     animation: fadeIn 0.5s ease-out;
   }
+.inline-container {
+    display: flex;
+    align-items: center;
+}
+
+.inline-container button {
+    margin-right: 10px;
+}
