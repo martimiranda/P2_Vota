@@ -92,14 +92,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     try {
         $dsn = "mysql:host=localhost;dbname=p2_votos";
         $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
-        $query = $pdo->prepare("SELECT q.question, o.option_text
-                                FROM questions q
-                                JOIN options o ON q.question_id = o.question_id
-                                JOIN votes v ON o.option_id = v.option_id
-                                JOIN invitations i ON q.question_id = i.question_id
-                                JOIN users u ON u.email = i.email
-                                WHERE i.token_status = false
-                                AND u.user_id = $userId;");
+        $query = $pdo->prepare("SELECT DISTINCT q.question, o.option_text FROM questions q JOIN options o ON q.question_id = o.question_id JOIN votes v ON o.option_id= v.option_id JOIN invitations i ON q.question_id = i.question_id JOIN users u ON u.email = v.email WHERE i.token_status = false AND u.user_id
+        = $userId;");
         $query->execute();
 
         while ($row = $query->fetch()) {
