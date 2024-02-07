@@ -9,13 +9,13 @@ date_default_timezone_set('Europe/Madrid');
 function registrarEvento($mensaje) {
     global $archivoLog2;
     global $archivoLog;
-    
+
     $mensajeRegistro = "[" . date("Y-m-d H:i:s") . "] $mensaje" . PHP_EOL;
 
-    try {
-        file_put_contents($archivoLog2, $mensajeRegistro, FILE_APPEND | LOCK_EX);
-    } catch (Exception $e) {
-        file_put_contents($archivoLog, $mensajeRegistro, FILE_APPEND | LOCK_EX);
-    }
+    if (file_put_contents($archivoLog2, $mensajeRegistro, FILE_APPEND | LOCK_EX) === false) {
+        if (file_put_contents($archivoLog, $mensajeRegistro, FILE_APPEND | LOCK_EX) === false) {
+        }
+    }    
+    
 }
 ?>
