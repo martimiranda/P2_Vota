@@ -85,7 +85,7 @@ if ($_SESSION['page'] == 'detailsPoll'  || $_SESSION['page'] == 'Invite Voters')
         <h2 class="usuario_log"><i class="fas fa-user"></i><?php echo "  ".$_SESSION['usuario'] ?></h2>
         <div class="menu">
             <a class='menul' href='dashboard.php'><h2>Panel de control</h2></a>
-            <a class='menul' href="list_polls.php"><h2>Listar Encuesta</h2></a>
+            <a class='menul' href="list_polls.php"><h2>Mis Encuestas</h2></a>
             <a class='menul' href='logout.php'><h2>Cerrar sesión</h2></a>
         </div>
     </header>
