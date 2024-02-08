@@ -63,7 +63,7 @@ if ($_SESSION['page'] == 'dashboard') {
 }    
 ?>
 <?php
-if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls' || $_SESSION['page'] == 'Invite Voters') {
+if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls') {
     ?>
     <header>
         <h1>MARGOMI VOTOS</h1>
@@ -78,7 +78,7 @@ if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls' || $
 ?>
 
 <?php
-if ($_SESSION['page'] == 'detailsPoll' ) {
+if ($_SESSION['page'] == 'detailsPoll'  || $_SESSION['page'] == 'Invite Voters') {
     ?>
     <header>
         <h1>MARGOMI VOTOS</h1>

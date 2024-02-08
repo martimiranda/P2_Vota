@@ -17,6 +17,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id']) || !isset($_POST
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitar Votantes</title>
     <link rel="stylesheet" href="style.css?no-cache=<?php echo time(); ?>">
+    <link rel="shortcut icon" href="img/vote_icon_logo.png" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="inviteVoters.js"></script>
 
