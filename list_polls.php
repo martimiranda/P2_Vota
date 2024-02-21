@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     include('sistemLog.php');
     try {
         $dsn = "mysql:host=localhost;dbname=p2_votos";
-        $pdo = new PDO($dsn, 'martimehdi', 'P@ssw0rd');
+        $pdo = new PDO("mysql:host=localhost;dbname=p2_votos", 'martimehdi', 'P@ssw0rd');
         $query = $pdo->prepare("SELECT * FROM questions WHERE creator_id = $userId ORDER BY question_id DESC;");
         $query->execute();
         $row = $query->fetch();
