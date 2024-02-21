@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
         <div id="box2">
             <section>
                 <a class='button2' href="create_poll.php">Crear Encuesta</a>
-                <a class='button2' href="list_polls.php">Listar Encuesta</a>
+                <a class='button2' href="list_polls.php">Mis Encuestas</a>
                 <a class='button2' href="list_votations.php">Mis Votaciones</a>
             </section>
         </div>

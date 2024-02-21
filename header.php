@@ -63,7 +63,7 @@ if ($_SESSION['page'] == 'dashboard') {
 }    
 ?>
 <?php
-if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls' || $_SESSION['page'] == 'Invite Voters') {
+if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls') {
     ?>
     <header>
         <h1>MARGOMI VOTOS</h1>
@@ -78,14 +78,14 @@ if ($_SESSION['page'] == 'create_poll' || $_SESSION['page'] == 'list_polls' || $
 ?>
 
 <?php
-if ($_SESSION['page'] == 'detailsPoll' ) {
+if ($_SESSION['page'] == 'detailsPoll'  || $_SESSION['page'] == 'Invite Voters') {
     ?>
     <header>
         <h1>MARGOMI VOTOS</h1>
         <h2 class="usuario_log"><i class="fas fa-user"></i><?php echo "  ".$_SESSION['usuario'] ?></h2>
         <div class="menu">
             <a class='menul' href='dashboard.php'><h2>Panel de control</h2></a>
-            <a class='menul' href="list_polls.php"><h2>Listar Encuesta</h2></a>
+            <a class='menul' href="list_polls.php"><h2>Mis encuestas</h2></a>
             <a class='menul' href='logout.php'><h2>Cerrar sesión</h2></a>
         </div>
     </header>
