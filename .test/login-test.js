@@ -31,9 +31,9 @@ class MyTest extends BasePhpTest
         await this.driver.findElement(By.xpath("//a[text()='Registrarse']")).click();
         await this.driver.findElement(By.xpath("//input")).sendKeys("ejemplo");
         await this.driver.findElement(By.xpath("//button[text()='Validar']")).click();
-        await this.driver.findElement(By.css("input[name='mail']")).sendKeys("ejemplo3@ejemplo.com");
+        await this.driver.findElement(By.css("input[name='mail']")).sendKeys("ejemplo5@ejemplo.com");
         await this.driver.findElement(By.css("div#box:last-child button")).click();
-        await this.driver.findElement(By.css("input[name='tlf']")).sendKeys("888888881");
+        await this.driver.findElement(By.css("input[name='tlf']")).sendKeys("888888341");
         await this.driver.findElement(By.css("div#box:last-child button")).click();
         await this.driver.findElement(By.css("div#box:last-child button")).click();
         await this.driver.findElement(By.css("input[name='city']")).sendKeys("inventado");
@@ -46,11 +46,15 @@ class MyTest extends BasePhpTest
         await this.driver.findElement(By.css("div#box:last-child button")).click();
         await this.driver.findElement(By.css("div#box:last-child button")).click();
         await this.driver.findElement(By.xpath("//a[text()='Logearse']")).click();
-        await this.driver.findElement(By.css("input[name='email']")).sendKeys("ejemplo3@ejemplo.com");
+        await this.driver.findElement(By.css("input[name='email']")).sendKeys("ejemplo5@ejemplo.com");
         await this.driver.findElement(By.css("input[name='password']")).sendKeys("12345678");
         await this.driver.findElement(By.css("div#box2:last-child button")).click();
         const textoError = await this.driver.findElement(By.css("div.error-window p")).getText();
-        assert(textoError);
+        if(textoError.includes("valid")){
+                console.log("TEST OK")
+        }else{
+                console.log("ERROR TEST: al registrar un nou usuari sense haber validat el email, no hauria de deixar logearse.")
+        }
 
 
 
